@@ -1,0 +1,12 @@
+# Continuous Integration
+The practice of continuous merge/integration of code into the main code repository backed by builds and test cases.
+
+new practice to merge more often, instead of having a bad experience
+
+## Staging branch
+
+Using a staging branch that mirrors the master where you can test all your code.
+
+
+# Circle CI(continuous integration)
+-big plus for resume

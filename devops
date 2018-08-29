@@ -1,10 +1,13 @@
+# DevOps
+
 Why learn DevOps?
-The process of code development/deployment
-What is DevOps?
+- The process of code development/deployment
+
+## What is DevOps?
 
 Traditional
 
-PM -> Engineers -> QA -> release -> Operations
+``PM -> Engineers -> QA -> release -> Operations``
 
 Specs, development,
 
@@ -36,4 +39,5 @@ Solution
 - QA, Release, Operations can be automated.
 - Merge them all into DevOps(engineers, QA, release, operations)
 - ```DevOps is a way to deliver software with shared pain and responsibility```
+- more of a mindset of how to approach software and maintaining code.
 

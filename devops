@@ -1,0 +1,39 @@
+Why learn DevOps?
+The process of code development/deployment
+What is DevOps?
+
+Traditional
+
+PM -> Engineers -> QA -> release -> Operations
+
+Specs, development,
+
+- Specs are what PM want in the code
+- Development is the development process of creating the code
+- QA test code, Quality Assurance, Quality Engineering
+- Write integration and e2e tests, but not always
+- Lots of manual testing, 
+
+Release
+
+- Maintain a release queue, 
+- Responsible for reals cycles and rolling back features of it breaks
+
+Operations
+
+- Making sure code runs smoothly, 
+- Manage infrastructure, scalaingto match traffic, demand
+- Monitor services and application health to ensure no bugs in prod
+- Responsible for infrastructure and production bugs.
+
+Disadvantages
+
+- slow time to production
+- Lack of collaboration
+- Too many operators, not enough developers.
+
+Solution
+- QA, Release, Operations can be automated.
+- Merge them all into DevOps(engineers, QA, release, operations)
+- ```DevOps is a way to deliver software with shared pain and responsibility```
+

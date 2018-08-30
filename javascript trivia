@@ -1,0 +1,29 @@
+# Javascript Trivia
+
+high level interpreted programming language
+- dynamic
+- weakly typed
+  - will allow type coersion
+- prototype-based
+  - makes copies through prototypes
+- multi-paradigm
+- single threaded
+- concurrent
+- never blocking
+  - doesn't wait for things to occur or finish(except for alerts)
+
+## parallel and concurrency
+---
+```concurrency:``` processes can run independently of each other
+
+```parallel:``` different processes working at the same time
+
+```javascript engine```: looks at all the JS code and turns it into things that can be run by computer. interprets JS code into runnable commands
+
+```javascript runtime environment```: way for js code to interact with things outside of the code(document listeners, etc) Gives code way to communicate with outside world. 
+
+runtime api:
+- DOM, AJAX calls, Timeout(setTimeout)
+
+```callback```: function passed into an argument of another function
+- doesnt mean its asynchronous all the time.

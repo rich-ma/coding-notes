@@ -9,4 +9,8 @@ Using a staging branch that mirrors the master where you can test all your code.
 
 
 # Circle CI(continuous integration)
--big plus for resume
+- big plus for resume
+- if building and testing work, circleci will deploy automatically as well.
+- utilizes docker and images to setup the enviornment for our tests, can setup postgreSQL, or ruby with specific versions for the testing environment.
+- saves cached gemfiles and will check them to see if you need to 'bundle install' again or not.
+- 

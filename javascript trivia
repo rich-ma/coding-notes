@@ -27,3 +27,19 @@ runtime api:
 
 ```callback```: function passed into an argument of another function
 - doesnt mean its asynchronous all the time.
+
+```promise```: an object that represents the eventual completion(or failure) of an asychronous call.
+
+Hoisting:
+* Hoisting is JavaScript's default behavior of moving all _**declarations**_ to the top of the current scope (ie: current script or function).
+
+```primitives in javascript:```
+1. numbers
+2. null
+3. boolean
+4. undef
+5. string
+6. symbol(new in ES6)
+
+- string class that wraps the string primitive that allows functions onto the string primitive
+

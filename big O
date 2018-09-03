@@ -9,3 +9,31 @@
 8. exponential
 9. factorial
 
+## Counting is hard
+- all about counting.
+- countering operations, and loops
+
+# log N
+- cuts the input size in half each iteration
+mergeSort is nLogn because we touch each number, but as we split the amount, it will count as logN.
+
+## recursion
+- the recursive stack takes up space complexity.
+
+double recursive calls would be 2^n
+- counting up exactly how much stuff is going on, given that only odd numbers result in extra work.
+
+``` ruby
+def ex11(n)
+  n.times do |i|
+    j = i
+    while j < n
+      j*=2
+    end
+  end
+end
+```
+- this would be O(n) even though the inner part is log(n), 
+
+Can have more than 1 interpretation of an algorithm in terms of time and space complexity.
+

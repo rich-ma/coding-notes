@@ -33,7 +33,7 @@ runtime api:
 Hoisting:
 * Hoisting is JavaScript's default behavior of moving all _**declarations**_ to the top of the current scope (ie: current script or function).
 
-```primitives in javascript:```
+**primitives in javascript:**
 1. numbers
 2. null
 3. boolean
@@ -42,4 +42,154 @@ Hoisting:
 6. symbol(new in ES6)
 
 - string class that wraps the string primitive that allows functions onto the string primitive
+
+## DOM Manipulation
+window: the browser
+
+document: document represents the DOM, the actual html on the page. Lives on the window.
+
+does document.onload and window.onload fire at the same time?
+- document.onload will fire first since it is within window. Window.onload will fire after everything else has loaded.
+- 
+
+different ways to get element from DOM
+- getElementById,
+- getElementByClassName,
+- getElementByTagName,
+- getElementByName,
+- **return node list**
+- querySelector('div')
+- 
+
+What is the fastest wayot select elements by using css selectors?
+- id or class is the fastest
+
+Can we use forEach or array emthods on NodeList?
+- cant use forEach, can use for, or convert it to Array(Array.from)
+
+How do you implement getElementsByAttribute?
+```JavaScript
+function getElementsByAttribute(attribute){
+  let allElements = document.getElementsByTagName('*'),
+      el, found=[];
+  for (let i = 0; i < allElements.length; i++) {
+    el = allElements[i];
+    if (el.getAttribute(attribute)) {
+      found.push(el);
+    }
+  }
+  return found;
+}
+```
+- get all the elements, check that element if it has the attribute we're looking for
+- 
+
+how could you add a class to an element by query selector?
+```JavaScript
+function addClass(attribute, className) {
+  const els = document.querySelector(attribute);
+  for (let i = 0; i < els.length; i++) {
+    const el = els[i];
+    el.classList.add(className);
+  }
+}
+```
+
+how do we verify if one element is a child of another element?
+
+
+best way to create DOM element?
+- document.body.innterHTML = "<div> fdfdsfsd </div>"
+
+what is createDocumentFragment and why might you use it?
+- document fragment is a mini DOM with methods on it, can build the same board over and over, can append things to it, and can append the fragment anywhere into the html we like.
+
+```javascript
+let list = ['foo', 'bar', 'baz'...], el, text;
+const fragment = document.createDocumentFragment();
+for (let i = 0; i < list.length; i++) {
+       const el = document.createElement('div');
+    const text = document.createTextNode(list[i]);
+    el.appendChild(text);
+    fragment.appendChild(el);
+}
+document.body.appendChild(fragment);
+```
+
+what is reflow? What causes reflow? How could you reduce reflow?
+- inserting or removing thing from dom that takes up space, takes up calculating power
+
+
+what is repaint, when does it happen?
+- changing a property of something that doesn't change the reflow
+- chanigng color of text, not super costly.
+
+How could you make sure to run some JS when the dom is ready, i.e. $(document).ready?
+- put script at the end of the body.
+- document add event listener, DOM content loaded,
+- could use jquery if we wanted(not good)
+- document.onreadystatechange = function()
+
+what is event bubbling?
+- when you trigger an event on a page, browser doesnt know what you clicked on speficically, will traverse through dom until it finds the element you clicked on,
+- the click handler will execute of the thing you clicked first, then up the parents to the body until there is a stop. or it gets to the top
+-  can pass a third variable that will do it on oposite way
+- targeting -> capture -> bubbling
+
+what is difference between event.target and event.currentTarget?
+- if something is nested, target is the most specific.
+- 
+
+How do you capture all clicks on the page?
+- put even listener on the body, all clicks on page would eventually bubble up to body.
+
+how do you grab all text on page?
+- document.body.innerText
+
+what does float do?
+- takes e
+
+how can you clear sides of a floating element?
+- clear property on both.
+
+what are pseudo selectors?
+- :hover, :nth-of-type, :visited, :focus, :link, :child, :checked, :last-child, :target
+- only applied under certain conditions
+
+different positions in CSS?
+- static: default,
+- absolute: relative to nearest non static ancesor
+- fixed: relative to window
+- relative:
+- sticky
+
+what are the differences between inline, block, inline-block?
+- inline, padding affects left right, but not top bottom
+- block breaks the 
+- inline-block: will float with document, but can set width, height, margin, padding properties.
+
+are css properties case sensitive?
+- 
+
+how can you highlight text using html?
+- can use mark tag.
+
+how can you reverse txt on page using only html?
+- bdo
+
+what is semantic html?
+- html tag describes content, not different than div, examples: nav, header, footer, 
+
+optional closing tag?
+- paragraphs don't need closing
+
+why do you need doctype at the beginning of html?
+- so browser knows what type of test it ix.
+- browser will run in work mode without the type, don't have access to all the new style conventions that we made, limiting functionalty if browser.
+
+what happens when you zoom?
+- change size of pixels
+
+what does the <details> tag do?
+- gives us a toggle-able to show more info.
 

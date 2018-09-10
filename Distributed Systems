@@ -62,7 +62,19 @@ A-Name goes directly to an IP?
   - because ram is eletrical, if you lose electricity, will lose everything stored there, vs a physical store.
 - RAM is non-persistant data, must be saved in disk.
 - big trade-off in persistance and fast access/writing.(ram vs hd)
-- 
+- write requests write to RAM and Disk, that way it persists, and can be fast.
+- read requests can use RAM as cache to make overall application much faster.
+- Active set: data that is frequently used, can be stored in RAM to allow for quick access.
+- Need mostly read requests, and small active set.
+
 
 
 # horizontal Scaling
+- goal: split up applicaiton load across several machines
+- two parts we can scale out:
+1. work of database
+2. work of application
+    - much simpler, 
+    - rent multiple machines from service, download same code to all machines, all machines run same code but have the same database, this way all frontend machines talk to the same db.
+    - Load balancer will take IP address and make it the domain server based on how many requests each server has
+    -load balancer work very simple, just passes requests to rails machines. 

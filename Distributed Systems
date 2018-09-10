@@ -1,4 +1,68 @@
 # distributed systems and architectures
 
 1. How do you deploy applications to cloud?
-2. be reliable
+2. be reliable to world
+3. How do we serve tons and tons of simultaneous users?
+
+Heroku has its own computer that is running your system for you.
+Heroku uses AWS EC2, elastic cloud computer, to run its servers.
+
+to replace heroku
+---
+- rent computer from amazon
+- has public dns address
+- ssh to log into some computer somewhere else
+- 
+
+using different name than amazon name
+- told amazon to give a static IP address, that you can rename, elastic-id
+- Can also 
+
+**IP address vs DNS**
+- when a computer wants to contact another computer, it needs Internet Protocol address(IP)
+- not enough to know name, need to know address as well.
+- if I wanted to find address before, would use a phone book
+- Domain is yourname, IP address is your physical address.
+
+- first step is finding IP address using DNS with your domain name.
+- second step is to connect.
+
+Once you have a static (elastic) ID, can create a custom domain name.
+
+C-Name is an alias?
+A-Name goes directly to an IP?
+
+## Replace Heroku (cont)
+- create DNS, need to get into server, and run it
+- need to 
+
+
+## Web Apps and DB performance
+- Two problems
+  - as more users want to talk to machine, it won't have enough CPU power to respond to all requests.
+  - Can be worse if requests have more DB work.
+  - if templates are complicated, could slow things down.
+  - will hit a limit based on CPU.
+  - 
+
+- Can horizontally scale, just add more machines.
+
+# Scaling up
+- can vertically scale, try to make our own code faster, improve the computer or code.
+- can fix bad code
+- can keep simple code and upgrade hardware instead.
+- make code more optimized and pay engineers, or buy better hardware and let engineers work on other products.
+
+## slow
+- hitting db is slow, writing data, reading data.
+- all data lives in either RAM or hard disks.
+- RAM, allows you to store and access data, much faster
+  - RAM is an electrical circuit that you can send signals to to remember info, can store and access data.
+  - responds to signals very fast, faster than physical moving components.
+  - because ram is eletrical, if you lose electricity, will lose everything stored there, vs a physical store.
+- RAM is non-persistant data, must be saved in disk.
+- big trade-off in persistance and fast access/writing.(ram vs hd)
+- 
+
+
+# horizontal Scaling

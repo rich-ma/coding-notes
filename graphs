@@ -24,3 +24,88 @@ Will never have cycles in our graph.
 - Vertices: DOM elements
 - Edges: parents-children, are connected, not going to connect grandparents and children, just parent-children
 
+```javascript
+<html id='a'>
+  <div id='b'>
+    <ul id='c'>
+      <li id='d'>hello</li>
+      <li id='e'>hey</li>
+      <li id='f'>yo</li>
+    </ul>
+  </div>
+</html>
+```
+this would be represetned in a tree with   d
+a-b-c< e
+       f
+
+- There is direction for our edges(implicit) but we don't draw it in, because that would infer that there could be a connected from child to parent, but not necessary.
+- because we know relation of vertices to edges, we can calc the **density**
+
+Density = E/N(N-1) => N-1/(N(N-1))
+1/N
+
+## Dependency set
+- tasks that depend on each other
+- Task A -> Task B iff b depends on a.
+- ex
+  - feed cat
+  - laundry
+  - go to target
+  - atm
+  - meet friend
+
+atm before target and meet friend
+need to go to target before feeding cat
+need to go to target before laundry
+need to do laundry before meeting friends
+
+Directed graph, the direction is very important here, is unweighted, can add weight to show time or importance.
+has no cycles in, starts at a vertex, ends at that vertex.
+stuck in endless cycle, if it cycles there will be an error, something has gone wrong.
+cylces should not exist in cycles here.
+
+interview questions might:
+- order graph in order of dependencies.
+- topoligical sort is important to know for interviews.
+
+## Graph implementation
+- many ways to represent it
+- depends on your use
+- usually don't have to implement your own at work.
+
+```ruby
+class Graph
+  def initialize
+    @vertices = []
+    @edges = []
+    create_edges
+  end
+
+
+
+end
+
+class Vertex
+  def initialize(data)
+    @data = data
+    # @edges = [verticies] // this if undirected
+    @in_edges = [vertices]
+    @out_edges = [vertices]
+  end
+end
+
+# class Edges
+#   def initialize(A,B, weight = 1)
+#     @vertices = [A,B]
+#     @weight = weight
+#   end
+# end
+
+```
+- can store edge information in Graph class vs making an edge class
+
+Adjacency Matrix
+- represents relationships between vertices
+- can also store edges within Vertex class
+

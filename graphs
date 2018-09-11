@@ -129,6 +129,7 @@ dependency:
 
 need an algorithm to find a correct order to do this in.
 
+<<<<<<< HEAD
 #topological sort
 - first get vertices that have no in edges
   - don't depend on anything else, only 1 right now

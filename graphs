@@ -1,0 +1,26 @@
+# graphs
+density: E / V(V-1)
+max density, closer to 1, more dense, closer to 0 more sparse
+
+in a directed graph this changes, need to add connections both ways vs in undirected.
+
+- need to add in In Edges, will double number of edges, n(n-1) more edges, 
+
+## twitter
+- vertices are users as well, need to be more nuances, but now instead of friendships we have followers, User A can follow B, b-> A, or b<->a
+- some subgraphs might be very dense, like a family, but the entirely of twitter will be sparse.
+- this is how friend algorithsm are kind of done.
+- Why is density important?
+  - for **algorithms**
+  - for some graphs the more dense it is, time could be linear or quadratic
+
+
+## Trees
+Binary search tree can represent a graph
+not the only kind of tree, to make a graph a tree, has **N vertices, N-1 edges.**
+Will never have cycles in our graph.
+
+**DOM is a tree as well, Document Object Model.**
+- Vertices: DOM elements
+- Edges: parents-children, are connected, not going to connect grandparents and children, just parent-children
+

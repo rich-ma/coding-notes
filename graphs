@@ -129,4 +129,68 @@ dependency:
 
 need an algorithm to find a correct order to do this in.
 
-#pathological sort
+#topological sort
+- first get vertices that have no in edges
+  - don't depend on anything else, only 1 right now
+  - first layer we do 1
+- second we will cross out edges coming out of those vertex/vertices
+- then look for all of the vertices with no in edges after, [2, 3, 5, 9], leaving [4,6,7,8]
+- we finish the vertices and their out edges, then continue looking for things with no more in edges. [4, 6,7] 
+- now 8 is the only vertex with and in edges, 7 -> 8
+- remove 8
+[1],[2,3,5,9], [4,6,7], [8]
+- order doesn't matter within each layer, many ways to topoligically sort.
+
+## kahn's algorithm
+- most widely used alg.
+1. create queue, push into it vertices with no in edges.
+2. dequeue and examine vertex that dequeued and put it in a sorted array of vertices, and check all out edges and if that vertex that it goes to has no more in edges, we will enqueue it.
+3. continue this process until nothing left in queue.
+
+- vertex class should have access to edges.
+- graph should have access to edges as well.
+  - want to identify by looking at verticex with no in edges.
+  - remove edges from graph, need to give graph class access to edges, don't need to do it, but makes it simpler.  
+
+```ruby
+def topo_sort(graph)
+  sorted = []
+  top = Queue.new
+  graph.vertices.each do |vertex|
+    if vertex.in_edges.empty?
+      top.enqueue(vertex)
+    end
+  end
+
+  until top.empty?
+    current = top.dequeue
+    sorted << current
+    current.out_edges.each do |edge|
+      if edge.destination.in_edge.empty?
+        top.enqueue(edge.destination)
+      end
+
+      graph.delete_edge(edge)
+    end
+    graph.delete_vertex(current)
+  end
+  
+  sorted
+end
+```
+- end up being O(V) for the graph.vertices, O(E) for the until loop, O(V+E), depends on sparcity/density of graph. Could be OV, or OE, or OV^2 depending on density.
+
+-kanh's algorithm is non determinstic, can have different result for same graph.
+
+## other algs
+- coffman graham, is deterministic
+- can modify DFS
+
+## use cases
+- tasks/dependency lists
+- file dependencies, like ```Webpack```, need to determine which ones to install first.
+- Schedule tasks given scheduling restrictions
+- minimal spanning tree
+  - harder example, should look it up.
+  - set of edges that minimally get to all vertices in a graph.
+  - 

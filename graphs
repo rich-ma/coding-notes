@@ -109,3 +109,24 @@ Adjacency Matrix
 - represents relationships between vertices
 - can also store edges within Vertex class
 
+Day 2 notes:
+1. get up
+2. make bed
+3. target
+4. laundry
+5. walk dog
+6. feed cat
+7. charge computer
+8. send emails
+9. plant fowers
+
+dependency:
+- will connect vertices if one step depends on another.
+- all steps require getting up. (1-> all)
+- to do laundry, need to go to target.(3-4)
+- target before feed cat(3-> 6)
+- charge computer before email (7 -> 8)
+
+need an algorithm to find a correct order to do this in.
+
+#pathological sort

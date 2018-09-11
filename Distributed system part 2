@@ -6,3 +6,32 @@ reads vs updates
 - easier to handle reads than to handle updates
 - most apps read heavy, few updates.
 - if we have a solution that handles lots of reads, but doesn't improve writes, could still be ok.
+- can make multiple copies of db on multiple machines as well.
+  - leader follower, master-slave
+
+unlike rails app, data will be changing because of udpates, we need to make one of the 3 machines special, leader will take all **the writes**
+- this allows the leader to tell the followers to update when needed.
+- reads can go to any of the tree.
+- doesn't solve write issues, and doesn't solve having more data than 1 machine can store.
+
+- writes come into leader, and followers need to change with leader to maintain same data to all dbs.
+- leader forwards them onto followers, 
+  1. leader can forward immediately to followers and wait for followers to confirm that they've made the change, then rails can be told that all machiens are ready. **synchronous replication**
+  2. as soon as leader updates itself, can tell rails application it updated itself, and in the background leader will update the followers **asynchronously**. 
+  3. can have different shards of the db with different leaders in charge of their shard of the db.  This allows us to scale writability based on the data you are in charge of.
+- having more leaders does not mean better scalability and can lead to conflict.
+
+## Failover
+- if a follower goes down, rails will realize reads aren't being performed can read from other followers/dbs as well.
+- if leader goes down, no leader left, that could be a problem, could go into a read only mode for the app.
+
+- Could be a problem with asynchronous and synchronous replication.
+  - leader applies change locally, but goes down before all followers are updated. 
+  - half the followers know of the transaction, but other doesn't.  If purple is new leader, all is good, but if green is promoted, and there is reconcilliation process, then green will not know that purple made the update.
+- simple to choose new leader, but need to go through reconcilliation process to ensure all dbs are up to date.
+- 
+
+leader follower chain replication
+- if the master needs to wait for the others to update before moving on, will add latency, vs doing them all in parallel.
+
+## 

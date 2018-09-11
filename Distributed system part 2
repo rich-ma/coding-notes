@@ -1,0 +1,8 @@
+# distributed systems lesson 2
+
+how to distribute work of database?
+- want to scale out DB, first need to attack the reads to db.
+reads vs updates
+- easier to handle reads than to handle updates
+- most apps read heavy, few updates.
+- if we have a solution that handles lots of reads, but doesn't improve writes, could still be ok.

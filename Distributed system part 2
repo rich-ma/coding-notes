@@ -34,4 +34,62 @@ unlike rails app, data will be changing because of udpates, we need to make one 
 leader follower chain replication
 - if the master needs to wait for the others to update before moving on, will add latency, vs doing them all in parallel.
 
-## 
+## multi leader replication solutions
+- locking
+- reconcile conflicting histories
+- fdf
+
+## linearlizability failures
+- time should always move forward in db system, shouldn't be able to read, and then read again but hit an older db.
+- ok to have delay in read, not ok to have reads occur in random time order.
+- need to handle it if you want to use promoted dbs. not an issue with single db.
+
+## Partitioning: Scaling write load
+- Split database so that not entire db is saved in each db.
+- partitioning, sharding.
+- adding new shards will mess it up
+  - fix this by partitioning into many shards at th beginning.
+  - won't need to reshuffle data completely.
+- can also have a better partitioning scheme, extensible hashing.
+
+Sharding can  be an issue with you need to queury multiple of them.
+- can partition table by friend_id1, distributed friendships table based on friend_id1
+- allows us to read friendships and cat_ids at the same time, from the same partition
+- also want information about curie's friends, and names, once we get Id's we can get profiles of all the cats.
+  - is a problem if curie's friends live on different partitions, all partitions will need to be queried, then result can be merged at the end, this join query is not scalable, read needs to end up everywhere, 
+  - if we never do this kind of query, then it is not a problem.
+
+## denormalization
+- normalization is removing duplicates of data in the db, makes it non scalable.
+- now that joins are not ok, we don't have to normalize, and will just adopt a different schema.
+
+Users:
+- id
+- fname
+- lname
+- avatar_url
+
+friendships:
+- friend_id1
+- friend_id2
+
+friends:
+- friend_id1
+- friend2_fname
+- friend2_lname
+- friend2_avatar_url
+
+this allows us to store data in the friends table without having to hit another db for info.
+denormalizing data store by copying data from other tables.
+
+trade-offs
+- takes more memory, if number of friends is limited, will need to have 
+- choice between fast read or fast write, will depend on your needs as a company.
+- introduce denormalization when necessary and helpful, will have to determine by how application is being used.
+- 
+
+## internal DB access API
+- don't expose db to rails app anymore
+- now they make http requests to internal API that will hit DB.
+- DataStore will hve routes that the Rails application can send http requests to.
+- 

@@ -1,0 +1,4 @@
+# Dynamic programming
+Top-Down
+- can calculate values as we go down the stack, storing it in the call itself, or in a local variable somewhere else.
+- 

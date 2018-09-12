@@ -1,4 +1,14 @@
 # Dynamic programming
 Top-Down
 - can calculate values as we go down the stack, storing it in the call itself, or in a local variable somewhere else.
-- 
+- saving work to previous sub problems as you go.
+
+bottom-up
+- using a cache that builds up as we go
+- subsequent answer is stored as you move up fib.
+- **essentially, but is dynamic, saving work to previous sub problems as you go to avoid doing extra work.**
+
+longest increasing subsequence
+[1,5,2,6,10,4,20] => [1,2,6,10,20]
+
+by knowing best one that ends in each index, we will know the best solution.  

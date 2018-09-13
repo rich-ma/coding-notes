@@ -41,3 +41,4 @@ maxes:[1,5,17,25,25(25 > 17+3),32, 35(25 + 10), 37, 45, 62, 62] both are highest
 - b1 is 1
 - b2 is 2
 -kth blair number is the sum of prev 2 blair numbers plus the (k-1)th odd number
+

@@ -164,8 +164,54 @@ top-down
     end
 
     @froggy_cache[n] = new_way_set
+  end  
+```
+
+## Knapsack
+
+- know this before going to any onsite
+- 0 or 1 knapsack problem
+- each item has weight and value, either will include item, or won't
+- create a table to represent our data
+- going to only consider one item at a time, figure out by looking at increasing window of cacpcity, what is max value that we can acheive with only items in our window so far.
+- at cap 0, max val is 0.
+- come up with logical way to figure out given cases, inductive step.
+- 
+
+
+```ruby
+  def knapsack(weights, values, capacity)
+    return 0 if capacity.zero? || weight.length.zero?
+    solution_table = knapsack_table(weights, values, capacity)
+    solution_table[capacity][-1]
+   
   end
 
+  # Helper method for bottom-up implementation
+  def knapsack_table(weights, values, capacity)
+    solution_table = []
+    0.upto(capacity) do |i|
+      solution_table[i] = []
+      0.upto(weight.length - 1) do |j|
+        if i == 0
+          solution_table[i][j] = 0
+        elsif j == 0
+          solution_table[i][j] = i < weights[0] ? 0 : values[0]
+        else
+          option1 = solution[i][j-1]
+          option2 = i < weights[j] ? 0 : (solution[i-weights[j]][j - 1] + values[j])
+          solution_table[i][j] = [option1, option2].max
+        end
+      end
+    end
+    solution_table
+  end
 
-  
 ```
+
+### well-formed string
+- is string of (), {}, [] well formed?
+-
+
+
+### 

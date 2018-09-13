@@ -45,6 +45,7 @@ maxes:[1,5,17,25,25(25 > 17+3),32, 35(25 + 10), 37, 45, 62, 62] both are highest
 ## frog steps
 - 
 
+class notes
 ```ruby 
   def frog_hops_bottom_up(n)
     frog_cache_builder(n)[n]
@@ -69,4 +70,102 @@ maxes:[1,5,17,25,25(25 > 17+3),32, 35(25 + 10), 37, 45, 62, 62] both are highest
       end
     ways_connection << result
   end
+```
+
+my method
+```ruby
+  def frog_hops_bottom_up(n)
+    cache = frog_cache_builder(n)
+    cache[n]
+  end
+
+  def frog_cache_builder(k)
+    cache = { 
+      1 => [[1]], 
+      2=> [[1,1], [2]], 
+      3 => [[1,1,1], [2,1], [1,2], [3]]
+    }
+    return cache if k <= 3
+    (4..k).each do |n|
+      result = []
+      1.upto(3) do |j|
+        cache[n - j].each { |res| result << (res + [j]) }
+      end
+      cache[n] = result
+    end
+    cache
+  end
+```
+
+top-down
+
+```ruby
+  # class notes
+  @frog_cache
+
+  def frog_hops_top_down(n)
+    frog_hops_top_down_helper(n)
+  end
+
+  def frog_hops_top_down_helper(n)
+    return @froggy_cache[n] if @froggy_cache[n]
+
+    new_ways_set = []
+    (1..3).each do |first_step| 
+      frog_hops_top_down(n-first_step).each do |way|
+        new_way = [first_step]
+
+        way.each do |step|
+          new_way << step
+        end
+
+        new_way_set << new_way
+      end
+    end
+
+    @froggy_cache[n] = new_way_set
+  end
+
+
+
+  # my method
+   def frog_hops_top_down(n)
+    frog_hops_top_down_helper(n)
+    @frog_cache[n]
+  end
+
+  def frog_hops_top_down_helper(n)
+    return @frog_cache[n] unless @frog_cache[n].nil?
+    result = []
+    1.upto(3) do |j|
+      frog_hops_top_down(n-j).each { |res| result << (res + [j]) }
+    end
+    @frog_cache[n] = result
+    result
+  end
+
+  # super frog
+
+  def frog_hops_top_down_helper(n)
+    ways_collection
+    return @froggy_cache[n] if @froggy_cache[n]
+
+    new_ways_set = []
+    (1..3).each do |first_step| 
+      frog_hops_top_down(n-first_step).each do |way|
+        new_way = [first_step]
+
+        way.each do |step|
+          new_way << step
+        end
+
+        new_way_set << new_way
+      end
+    end
+
+    @froggy_cache[n] = new_way_set
+  end
+
+
+  
 ```

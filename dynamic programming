@@ -22,3 +22,22 @@ input:[1,5,16,20,3,7,10,5,10,25,17] = 62
 maxes:[1,5,17,25,25(25 > 17+3),32, 35(25 + 10), 37, 45, 62, 62] both are highest
 - as you move along, you take the record from the one that you chose.
  
+ usually keep track of a cache of solutions to smaller subproblems
+
+ We can:
+ 1. keep globally scoped variable
+ 2. pass a pointer to the cache from call to call, **passing by reference**
+  - in javascript all non primitive types are passed by reference, so we could pass a hash or array
+  - in ruby, everything is passed by value, meaning that when something is passed into the function, the function makes a copy of the paramenter then refers to and mutates the copy. 
+
+  we can use a class in ruby to create instance variables that we can use as a cache, one for each dynamic programming problem.
+  - will only use this method for top-down implementations
+  - for bottom-up implementations, a helper function will build out and return the cache so we dont have to worry about updating it while doing the recursive calls.
+    - wont want to really do this in a real life situation because you will most likely be working with classes, functional scope, or other context that allow you to create and maintain and cache in a reasonable way.
+
+    - for whiteboarding, just create a global variable that you can refer to, but tell the interviewer about what you're doing, assuming the cache is globally scoped, and explain how you would implement it.
+
+## Blair numbers
+- b1 is 1
+- b2 is 2
+-kth blair number is the sum of prev 2 blair numbers plus the (k-1)th odd number

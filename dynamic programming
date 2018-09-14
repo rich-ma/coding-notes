@@ -210,8 +210,9 @@ top-down
 ```
 
 ### well-formed string
-- is string of (), {}, [] well formed?
--
+- is string of ()s is it ordered correctly?
+- can use a counter that adds 1 if it encounters opening, -1 if closing, if ever < 0, will be false.
 
 
-### 
+### Maze solver
+- 

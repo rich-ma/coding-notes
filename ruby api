@@ -8,3 +8,11 @@
   - then with the response we get the body
   - with the body we parse it from json, JSON.parse(body)
   - then we can play with the response in a hash like object.
+  - requires 'net/http' gem, and 'json' gem to parse the json
+
+
+  ## HTTParty
+  - can also use http party, is much easier
+  - requires 'httparty' gem
+  allows us to easily just call HTTParty.get.
+    - automatically parses the data for us, dont need to get the response, then the body, then parse it. 

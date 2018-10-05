@@ -10,9 +10,23 @@
   - then we can play with the response in a hash like object.
   - requires 'net/http' gem, and 'json' gem to parse the json
 
+``` ruby
+require 'net/http'
+require 'json'
+uri = URI.parse("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=eE82y9g3YqCOAI6Nl4dQoMDRjvQZgjPx&limit=5")
+resp = Net::HTTP.get_response(uri)
+buffer = resp.body
+result = JSON.parse(buffer)
+```
 
   ## HTTParty
   - can also use http party, is much easier
   - requires 'httparty' gem
   allows us to easily just call HTTParty.get.
     - automatically parses the data for us, dont need to get the response, then the body, then parse it. 
+
+```ruby
+require 'httparty'
+response = HTTParty.get("http://api.giphy.com/v1/gifs/search?q=ryan+reynolds&api_key=eE82y9g3YqCOAI6Nl4dQoMDRjvQZgjPx&limit=5")
+response['data'].each { |res| puts res['url']}
+```

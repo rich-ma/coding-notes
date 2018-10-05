@@ -1,2 +1,10 @@
 # using ruby for api calls
-- can use 
+- can use Net:HTTP
+- Can also use HTTParty
+
+- with Net::HTTP need to get url first,
+  -URI.parse(url)
+  then with that we call Net::HTTP.get_response(uri)
+  - then with the response we get the body
+  - with the body we parse it from json, JSON.parse(body)
+  - then we can play with the response in a hash like object.

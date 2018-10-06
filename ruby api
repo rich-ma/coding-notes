@@ -130,3 +130,6 @@ from (pry):23:in `__pry__'
  "sales"=>["daniel"],
  "data"=>["daniel"]}
 ```
+
+- check randomness of securerandom token by doing a map with keys as alpha-num and value as count of those
+- 

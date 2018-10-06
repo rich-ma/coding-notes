@@ -30,3 +30,103 @@ require 'httparty'
 response = HTTParty.get("http://api.giphy.com/v1/gifs/search?q=ryan+reynolds&api_key=eE82y9g3YqCOAI6Nl4dQoMDRjvQZgjPx&limit=5")
 response['data'].each { |res| puts res['url']}
 ```
+
+
+
+[1,2,3]
+[1,2,3,4]
+
+DG notes
+```ruby
+[1] pry(main)> data = {
+[1] pry(main)*   people: [
+[1] pry(main)*     {
+[1] pry(main)*       name: 'iz',
+[1] pry(main)*       job: 'cto',
+[1] pry(main)*       skills: ['ruby', 'rails', 'aws'],
+[1] pry(main)*       technical: true,
+[1] pry(main)*     },
+[1] pry(main)*     {
+[1] pry(main)*       name: 'earl',
+[1] pry(main)*       job: 'product',
+[1] pry(main)*       skills: ['ruby', 'rails', 'R'],
+[1] pry(main)*       technical: true,
+[1] pry(main)*     },
+[1] pry(main)*     {
+[1] pry(main)*       name: 'daniel',
+[1] pry(main)*       job: 'ceo',
+[1] pry(main)*       skills: ['sales', 'data'],
+[1] pry(main)*       technical: false,
+[1] pry(main)*     }
+[1] pry(main)*   ]
+[1] pry(main)* }.deep_stringify_keys()
+=> {"people"=>
+  [{"name"=>"iz", "job"=>"cto", "skills"=>["ruby", "rails", "aws"], "technical"=>true},
+   {"name"=>"earl", "job"=>"product", "skills"=>["ruby", "rails", "R"], "technical"=>true},
+   {"name"=>"daniel", "job"=>"ceo", "skills"=>["sales", "data"], "technical"=>false}]}
+[2] pry(main)> puts obj['people'].count
+NameError: undefined local variable or method `obj' for main:Object
+from (pry):23:in `__pry__'
+[3] pry(main)> puts data['people'].count
+3
+=> nil
+[4] pry(main)>
+[5] pry(main)> count = 0
+=> 0
+[6] pry(main)> data['people'].each do |person|
+[6] pry(main)*   count += 1 if person['technical']
+[6] pry(main)* end
+=> [{"name"=>"iz", "job"=>"cto", "skills"=>["ruby", "rails", "aws"], "technical"=>true},
+ {"name"=>"earl", "job"=>"product", "skills"=>["ruby", "rails", "R"], "technical"=>true},
+ {"name"=>"daniel", "job"=>"ceo", "skills"=>["sales", "data"], "technical"=>false}]
+[7] pry(main)> count
+=> 2
+[8] pry(main)> result = []
+=> []
+[9] pry(main)> data['people'].each {|person| result << person['name'] if person['technical']}
+=> [{"name"=>"iz", "job"=>"cto", "skills"=>["ruby", "rails", "aws"], "technical"=>true},
+ {"name"=>"earl", "job"=>"product", "skills"=>["ruby", "rails", "R"], "technical"=>true},
+ {"name"=>"daniel", "job"=>"ceo", "skills"=>["sales", "data"], "technical"=>false}]
+[10] pry(main)> result
+=> ["iz", "earl"]
+[11] pry(main)> map = {}
+=> {}
+[12] pry(main)>
+[13] pry(main)> data['people'].each do |person|
+[13] pry(main)*   person['skills'].each do |skill|
+[13] pry(main)*     map[skill] = [person['name']] unless map[skill]
+[13] pry(main)*     map[skill] << person['name']
+[13] pry(main)*   end
+[13] pry(main)* end
+=> [{"name"=>"iz", "job"=>"cto", "skills"=>["ruby", "rails", "aws"], "technical"=>true},
+ {"name"=>"earl", "job"=>"product", "skills"=>["ruby", "rails", "R"], "technical"=>true},
+ {"name"=>"daniel", "job"=>"ceo", "skills"=>["sales", "data"], "technical"=>false}]
+[14] pry(main)>
+[15] pry(main)> map
+=> {"ruby"=>["iz", "iz", "earl"],
+ "rails"=>["iz", "iz", "earl"],
+ "aws"=>["iz", "iz"],
+ "R"=>["earl", "earl"],
+ "sales"=>["daniel", "daniel"],
+ "data"=>["daniel", "daniel"]}
+[16] pry(main)> map = {}
+=> {}
+[17] pry(main)>
+[18] pry(main)> data['people'].each do |person|
+[18] pry(main)*   person['skills'].each do |skill|
+[18] pry(main)*     map[skill] = [] unless map[skill]
+[18] pry(main)*     map[skill] << person['name']
+[18] pry(main)*   end
+[18] pry(main)* end
+=> [{"name"=>"iz", "job"=>"cto", "skills"=>["ruby", "rails", "aws"], "technical"=>true},
+ {"name"=>"earl", "job"=>"product", "skills"=>["ruby", "rails", "R"], "technical"=>true},
+ {"name"=>"daniel", "job"=>"ceo", "skills"=>["sales", "data"], "technical"=>false}]
+[19] pry(main)>
+[20] pry(main)> map
+=> {"ruby"=>["iz", "earl"],
+ "rails"=>["iz", "earl"],
+ "aws"=>["iz"],
+ "R"=>["earl"],
+ "sales"=>["daniel"],
+ "data"=>["daniel"]}
+```

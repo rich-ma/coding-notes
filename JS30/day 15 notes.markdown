@@ -12,8 +12,12 @@
 - localStorage.setItem('items', JSON.stringify(items));
   - using JSON.stringify allows us to stringify the content
   - JSON.parse will turn it back into an object.
+- local storage takes strings and we can use json .stringify to store it, and then json.parse to turn it back into an object to be read later.
+- we can store anything under localstorage like an object. localStorage.setItem('name', 'item');
+
 
 ## event delegation, 
 - rather than listen for lcick or change on checkboxes, look for somebody that will be on the page at time of listening, the UL is always there.
 - can listen for a click on the plate, and the UL will tell it to click.
 - listen on some ancestor/parent, and use currentTarget/Target to dictate whether or not an event should occur.
+

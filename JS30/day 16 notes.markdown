@@ -9,5 +9,5 @@
 
 - use e.target.offsetLeft, offsetTop to make up for the x and y resetting to 0
 
-- can add multiple textShadows at a time, seperated by commas~
+- can add multiple textShadows at a time, seperated by
 

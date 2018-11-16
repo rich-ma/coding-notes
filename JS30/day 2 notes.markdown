@@ -1,3 +1,4 @@
+
 # day 2 clock
 - transition-timing-function controls how the transition looks 
 - we add 90 to the end of each degree calcuation since the default was to have the hands of the clock poining West instead of North.

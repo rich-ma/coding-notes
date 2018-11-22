@@ -8,3 +8,28 @@
 - need to write a function for the addeventlistener for each child that way it wont automatically add the highlight to each one.
 
 - removed .highlight from prev highlight and onto the new one, but it still has the old class effect, need to find a way to remove the old class and put it back afterward, I could look at the parent and then add that class to it?
+
+# video notes
+- there are css transitions on the 
+- need to make highlight
+- const highlight = document.createElement('span');
+- highlgiht.classList.add('highlight');
+- document.body.append(highlight);
+
+- create a function called highlight
+  - will use getClientBoundingRect
+  - const linkCoords = this.getBoundingClientRect();
+  - gives us coordinates for the link
+
+
+- add event listener for each trigger.
+- add highlight,style.width = '${linkCoords.width}px'
+- add highlight,style.height = '${linkCoords.height}px'
+- will apply the style to those coordinates, not actually applying the class to each object like I thought to do.
+- by doing this, we can take advantage of the transition style from the highlight 
+
+- need to make the left linkCoords.left + window.scrollX
+- and the top, linkCoords.top + window.scrollY
+  - this will make up for whenever you scroll so it will add the transition effect to the correct area after scrolling
+  - without this the transition will be off by the amount you've scrolled.
+  

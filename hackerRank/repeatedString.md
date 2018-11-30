@@ -44,3 +44,20 @@ Sample Output 1
 Explanation 1 
 Because all of the first  letters of the infinite string are a, we print  on a new line.
 
+```javascript
+function repeatedString(s, n) {
+    let aCount = 0;
+    [...s].forEach(letter => {
+        if (letter === 'a') aCount += 1;
+    });
+    let result = aCount * (Math.floor(n / s.length));
+    for (let i = 0; i < n % s.length; i++){
+        if (s[i] === 'a') result += 1;
+    }
+    return result;
+}
+
+```
+
+- count number of a's in the string, at most this is O(n + n);
+- math.floor the times s is repeated in n, then get the mod and count the number of a's in that

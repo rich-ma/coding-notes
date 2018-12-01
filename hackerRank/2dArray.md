@@ -67,4 +67,26 @@ Sample Output
 - is array single array?
 
 - will use arr[i][j] to indicate i = row, j = column
-- until i < arr[i].length - 3, we will add [j] - [j + 2], [i+1][j+1], and [i+2][j] to [i+2][j + 2];
+- until i < arr[i].length - 3 and i < arr.length - 2 we will add [j] - [j + 2], [i+1][j+1], and [i+2][j] to [i+2][j + 2];
+
+
+```javascript
+// Complete the hourglassSum function below.
+function hourglassSum(arr) {
+    let best = false;
+    let i = 0;
+    let j = 0;
+    let length = arr[0].length;
+    while (i < arr.length - 2) {
+        while (j < length - 2) {
+            let currSum = (arr[i][j] + arr[i][j + 1] + arr[i][j + 2] + arr[i + 1][j + 1] + arr[i + 2][j] + arr[i + 2][j + 1] + arr[i + 2][j + 2]);
+            if (best === false || currSum > best) {
+                best = currSum;
+            } 
+            j++;            
+        }
+        i++
+    }
+    return best;
+}
+```

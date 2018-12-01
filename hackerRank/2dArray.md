@@ -62,3 +62,9 @@ Sample Input
 Sample Output
 
 19
+
+- arrays are shaped like a capital I, 16 exist from top left to bottom right, need to find each one in the array.
+- is array single array?
+
+- will use arr[i][j] to indicate i = row, j = column
+- until i < arr[i].length - 3, we will add [j] - [j + 2], [i+1][j+1], and [i+2][j] to [i+2][j + 2];

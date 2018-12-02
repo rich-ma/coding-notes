@@ -30,3 +30,13 @@ Sample Input
 Sample Output
 
 5 1 2 3 4
+
+
+```javascript
+function rotLeft(a, d) {
+    const rotations = d % a.length;
+    return a.slice(rotations).concat(a.slice(0, rotations));
+}
+
+```
+

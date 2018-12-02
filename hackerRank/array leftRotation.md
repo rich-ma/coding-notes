@@ -39,4 +39,9 @@ function rotLeft(a, d) {
 }
 
 ```
+- this works by slicing the array from the desired number of rotations and concating that to the beginning of the array.
+- this is much more efficient than rotating each one through a loop, I think it can handle negative rotations as well. 
+- allows negative rotations because slicing using negatives grabs from the end of the array.
+- this is still O(n), 2n, since you go through it to get negatives, or you go through it when slicing to find the end.
+
 

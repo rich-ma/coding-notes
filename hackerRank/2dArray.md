@@ -75,18 +75,18 @@ Sample Output
 function hourglassSum(arr) {
     let best = false;
     let i = 0;
-    let j = 0;
-    let length = arr[0].length;
     while (i < arr.length - 2) {
-        while (j < length - 2) {
+        let j = 0;
+        while (j < arr[0].length - 2) {
             let currSum = (arr[i][j] + arr[i][j + 1] + arr[i][j + 2] + arr[i + 1][j + 1] + arr[i + 2][j] + arr[i + 2][j + 1] + arr[i + 2][j + 2]);
             if (best === false || currSum > best) {
                 best = currSum;
             } 
-            j++;            
+            j += 1;            
         }
-        i++
+        i += 1;
     }
     return best;
+}
 }
 ```

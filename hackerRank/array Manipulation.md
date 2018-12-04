@@ -50,3 +50,25 @@ After the first update list will be 100 100 0 0 0.
 After the second update list will be 100 200 100 100 100. 
 After the third update list will be 100 200 200 200 100. 
 The required answer will be .
+
+
+- basic method would be to go through each array of inputs then loop from start to end and modify the original array.
+```javascript
+function arrayManipulation(n, queries) {
+    let hash = {};
+    queries.forEach(query => {
+        for (let i = query[0] - 1; i < query[1]; i++){
+            if (hash[i] === undefined) {
+                hash[i] = query[2];
+            } else {
+                hash[i] += query[2];
+            }
+        }
+    })
+    let max = hash[0];
+    for (let i = 0; i < n; i++){
+        if (hash[i] > max) max = hash[i];
+    }
+    return max;
+}
+```

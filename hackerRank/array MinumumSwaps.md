@@ -73,3 +73,6 @@ After swapping  we get
 After swapping  we get  
 After swapping  we get  
 So, we need a minimum of  swaps to sort the array in ascending order.
+
+- swapping is odd in this method, its not greedy sorting, seems random?
+- Could have made a mistake in the examples, will try greedy sort first and see if it works or not.

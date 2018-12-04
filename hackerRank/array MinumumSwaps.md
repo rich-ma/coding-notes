@@ -76,3 +76,23 @@ So, we need a minimum of  swaps to sort the array in ascending order.
 
 - swapping is odd in this method, its not greedy sorting, seems random?
 - Could have made a mistake in the examples, will try greedy sort first and see if it works or not.
+
+```javascript
+function minimumSwaps(arr) {
+    let swaps = 0;
+    let currIndex = 0;
+    let swappedIndex = 0;
+    let sorted = arr.slice();
+    sorted = sorted.sort();
+    console.log(sorted);
+    arr.forEach((num, i) => {
+        console.log(i);
+        if (arr[i] != sorted[i]) {
+            swaps += 1;
+        }
+    });
+    if (swaps === 0) return 0;
+    return swaps - 1;
+}
+```
+- this code looks at the numbers in the wrong positions and assumes that any mistake can be fixed by that number - 1, passes the practice solutions, but not the actual submission.

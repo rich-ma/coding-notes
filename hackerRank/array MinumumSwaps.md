@@ -92,7 +92,53 @@ function minimumSwaps(arr) {
         }
     });
     if (swaps === 0) return 0;
+    if (swaps === 1) return 1;
     return swaps - 1;
 }
 ```
 - this code looks at the numbers in the wrong positions and assumes that any mistake can be fixed by that number - 1, passes the practice solutions, but not the actual submission.
+- messed up in my logic, 0-2 out of position is that correct number, above that requires number-1;
+- also doesn't work
+
+- trying a new method where I will look at the position of the number, and determine if it is in the right position(index + 1), if it is, will not move it
+- this looks to be what the code is doing, save the first example(wtf?).
+```javascript
+function minimumSwaps(arr) {
+    let swaps = 0;
+    let leftPointer = 0;
+    while (leftPointer < arr.length) {
+        if (arr[leftPointer] != (leftPointer + 1)) {
+            for (let rightPointer = leftPointer; rightPointer < arr.length; rightPointer++){
+                if (arr[rightPointer] === leftPointer + 1) {
+                    [arr[leftPointer], arr[rightPointer]] = [arr[rightPointer], arr[leftPointer]];
+                    swaps += 1;
+                }
+            }
+        } 
+        leftPointer += 1;
+    }
+    return swaps;
+}
+```
+- test cases are huge, code takes forever to run
+- this code can take a long time, but gets faster as time goes on as it doens't look over redundant positions as it moves forward.
+- forgot to add break to the code, meaning it was running past when it was supposed to.
+
+```javascript
+function minimumSwaps(arr) {
+    let swaps = 0;
+    let leftPointer = 0;
+    while (leftPointer < arr.length) {
+        if (arr[leftPointer] != (leftPointer + 1)) {
+            for (let rightPointer = leftPointer; rightPointer < arr.length; rightPointer++){
+                if (arr[rightPointer] === leftPointer + 1) {
+                    [arr[leftPointer], arr[rightPointer]] = [arr[rightPointer], arr[leftPointer]];
+                    swaps += 1;
+                    break;
+                }
+            }
+        } 
+        leftPointer += 1;
+    }
+    return swaps;
+```

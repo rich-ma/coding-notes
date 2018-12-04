@@ -21,4 +21,8 @@
 
 - what will happen if we have stopPropagation and capture: true?
   - it will stop after one, since it is firing on the way down and stops after the first one.
-  
+
+## once
+- another new option is *once*, which when set to true will listen to a click, and unbind itself, which is like a removeEventListener
+- this allows us to run event only one time, and will not run again until the page is loaded, or some other event readds it.
+- added it to a button to show it, can add it to store buttons where you dont want a user to be able to click on a button more than one time

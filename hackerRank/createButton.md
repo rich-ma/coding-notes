@@ -69,5 +69,14 @@ button.innerHTML = 0;
 button.addEventListener('mousedown', () => {
     button.innerHTML = parseInt(button.innerHTML) + 1;
 })
+```
+- parses the innerHTML to int and adds 1 to it, not the best way, but is functional.
+- 
 
+```css
+#btn {
+    width: 96px;
+    height: 48px;
+    font-size: 24px;
+}
 ```

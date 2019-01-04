@@ -43,3 +43,27 @@ four clicks
 After  more clicks, it looks like this:
 
 nine clicks
+
+index.html
+```html
+<!-- Enter your HTML code here -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/button.css" type="text/css">
+    </head>
+    
+    <body>
+        <button id='btn' value=0></button>
+        <script src="js/button.js" type="text/javascript"></script>
+    </body>
+</html>
+
+```
+
+button.js
+
+```javascript
+let button = document.querySelector('#id');
+
+```

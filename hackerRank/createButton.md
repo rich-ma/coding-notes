@@ -64,6 +64,10 @@ index.html
 button.js
 
 ```javascript
-let button = document.querySelector('#id');
+let button = document.querySelector('#btn');
+button.innerHTML = 0;
+button.addEventListener('mousedown', () => {
+    button.innerHTML = parseInt(button.innerHTML) + 1;
+})
 
 ```

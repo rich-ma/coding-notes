@@ -74,10 +74,12 @@ button.addEventListener('mousedown', () => {
 - 
 
 ```css
-#btn {
-    width: 96px;
-    height: 48px;
+#btns {
+    display: grid;
+    width: 75%;
     font-size: 24px;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 48px 48px 48px;
 }
 ```
 

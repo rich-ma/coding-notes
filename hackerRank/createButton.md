@@ -80,3 +80,12 @@ button.addEventListener('mousedown', () => {
     font-size: 24px;
 }
 ```
+
+```javascript
+let btns = document.querySelector('#btns');
+let btn5 = document.querySelector('#btn5');
+let w = document.querySelector('body').style.offsetWidth;
+const order = [1,2,3,6,9,8,7,4]
+let clicks = 0;
+
+```

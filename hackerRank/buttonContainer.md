@@ -54,3 +54,34 @@ After clicking btn5  time, they look like this: click1
 
 After clicking btn5  more time (for a total of  clicks), they look like this: click2
 
+
+
+```html
+<!-- Enter your HTML code here -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Buttons Grid</title>
+        <link rel="stylesheet" href="css/buttonsGrid.css" type="text/css">
+    </head>
+    <body>
+        <div id='btns'>
+            <button id='btn1' value=1>1</button>
+            <button id='btn2' value=2>2</button>
+            <button id='btn3' value=3>3</button>
+            <button id='btn4' value=4>4</button>
+            <button id='btn5' value=5>5</button>
+            <button id='btn6' value=6>6</button>
+            <button id='btn7' value=7>7</button>
+            <button id='btn8' value=8>8</button>
+            <button id='btn9' value=9>9</button>
+            
+        </div> 
+        <script src="js/buttonsGrid.js" type="text/javascript"></script>
+    </body>
+</html>
+
+```
+- Add btns container and 9 buttons
+- each button has an idividual id, that we can use to 

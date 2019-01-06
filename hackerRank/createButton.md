@@ -71,33 +71,12 @@ button.addEventListener('mousedown', () => {
 })
 ```
 - parses the innerHTML to int and adds 1 to it, not the best way, but is functional.
+- 
 
 ```css
-#btns {
-    display: grid;
-    width: 75%;
+#btn {
+    width: 96px;
+    height: 48px;
     font-size: 24px;
-    grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 48px 48px 48px;
 }
-```
-
-```javascript
-let btns = [...document.querySelector('#btns').children];
-let btn5 = document.querySelector('#btn5');
-let w = document.querySelector('body').style.offsetWidth;
-btns
-const order = [1,2,3,6,9,8,7,4,5]
-let clicks = 0;
-
-btn5.addEventListener('mousedown', () => {
-    clicks += 1;
-    [...btns.children].forEach(btn => {
-        const pos = parseInt(btn.dataset.position);
-        console.log(pos);
-        if(pos !== 9){
-            btn.innerHTML = order[pos + (clicks % 8)];
-        }
-    });
-})
 ```

@@ -67,21 +67,41 @@ After clicking btn5  more time (for a total of  clicks), they look like this: cl
     </head>
     <body>
         <div id='btns'>
-            <button id='btn1' value=1>1</button>
-            <button id='btn2' value=2>2</button>
-            <button id='btn3' value=3>3</button>
-            <button id='btn4' value=4>4</button>
-            <button id='btn5' value=5>5</button>
-            <button id='btn6' value=6>6</button>
-            <button id='btn7' value=7>7</button>
-            <button id='btn8' value=8>8</button>
-            <button id='btn9' value=9>9</button>
-            
+            <button id='btn1' data-position=0>1</button>
+            <button id='btn2' data-position=7>2</button>
+            <button id='btn3' data-position=6>3</button>
+            <button id='btn4' data-position=1>4</button>
+            <button id='btn5' data-position=8>5</button>
+            <button id='btn6' data-position=5>6</button>
+            <button id='btn7' data-position=2>7</button>
+            <button id='btn8' data-position=3>8</button>
+            <button id='btn9' data-position=4>9</button>
         </div> 
         <script src="js/buttonsGrid.js" type="text/javascript"></script>
     </body>
 </html>
-
 ```
 - Add btns container and 9 buttons
 - each button has an idividual id, that we can use to 
+
+
+```javascript
+let btns = [...document.querySelector('#btns').children];
+let btn5 = document.querySelector('#btn5');
+let w = document.querySelector('body').style.offsetWidth;
+const order = [1,4,7,8,9,6,3,2,5];
+let clicks = 0;
+
+btns.forEach(btn => btn.innerHTML = order[btn.dataset.position]);
+
+btn5.addEventListener('mousedown', () => {
+    clicks += 1;
+    btns.forEach(btn => {
+        const pos = parseInt(btn.dataset.position);
+        console.log(pos);
+        if(pos !== 8){
+            btn.innerHTML = order[(pos + (clicks%8)) % 8];
+        }
+    });
+})
+```

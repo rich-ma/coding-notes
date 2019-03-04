@@ -50,3 +50,11 @@ var lengthOfLongestSubstring = function (s) {
 // for Longest Substring Without Repeating Characters.
 // Memory Usage: 41.2 MB, less than 46.39 % of JavaScript online submissions
 // for Longest Substring Without Repeating Characters.
+
+// this code works by keeping track of the current word and checking it to the longest word.
+//if the word we are looking at includes the newest character we will shift the current start
+/*
+not the most efficient since it uses indexOf, which in worse case could be the length of the string everytime.
+
+
+*/

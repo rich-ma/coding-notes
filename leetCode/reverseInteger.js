@@ -42,3 +42,30 @@ for Reverse Integer.
 Memory Usage: 35.8 MB, less than 70.03 % of JavaScript online submissions
 for Reverse Integer.
 */
+
+/**
+ * @param {string} str
+ * @return {number}
+ */
+var myAtoi = function (str) {
+  let a = str.match(/[+.-]*\w+/);
+  if (a) {
+    a = a[0];
+    if (!parseInt(a)) return 0;
+  } else {
+    return 0;
+  }
+
+  let mod = a < 0 ? true : false;
+
+  if (Math.abs(a) >= 2147483648) {
+    if (mod) {
+      return -2147483648;
+    } else {
+      return 2147483647;
+    }
+
+  }
+
+  return parseInt(a);
+};

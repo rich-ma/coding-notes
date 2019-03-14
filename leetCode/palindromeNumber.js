@@ -29,3 +29,17 @@ Follow up:
 
   Coud you solve it without converting the integer to a string ?
   */
+
+  /**
+   * @param {number} x
+   * @return {boolean}
+   */
+  var isPalindrome = function (x) {
+    if (x < 0) return false;
+    let y = x.toString();
+    let j = y.length - 1;
+    for (let i = 0; i <= j; i++, j--) {
+      if (y[i] != y[j]) return false;
+    }
+    return true;
+  };

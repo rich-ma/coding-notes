@@ -47,22 +47,48 @@ function lucasNumberMemo(n, memo = {
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
 function minChange(coins, amount, memo = {}) {
-    if(memo[amount]) return memo[ammount];
-    if(amount === 0) return 0;
+    // if(memo[amount]) return memo[ammount];
+    // if(amount === 0) return 0;
+    // if(coins.length === 0) return 0;
 
-    curr_coin = coins[coins.length - 1]
-    count = 0;
-    curr_amt = amount;
-    while(curr_amt > curr_coin){
-        curr_amt -= curr_coin;
-        count +=1;
-    }
+    // curr_coin = coins[coins.length - 1];
+    // count = 0;
+    // curr_amt = amount;
+    // console.log('curr_amt starts at', amount);
+    // while(curr_amt >= curr_coin){
+    //     curr_amt -= curr_coin;
+    //     count +=1;
+    //     console.log(curr_amt);
+    // }
     
-    memo[amount] = count + minChange(coins.slice(0, coins.length - 1), curr_amt, memo);
+    // memo[amount] = count + minChange(coins.slice(0, coins.length - 1), curr_amt, memo);
 
-    return memo[amount];
+    // return memo[amount];
+
 
     //minChanges
+    // need to find a way to find optimal path for each value.
+    // for each amount, we will give a recursive call to each possible denomination that can be removed, and return the combination with the smallest count.
+    if (memo[amount]) return memo[ammount];
+    if(amount === 0) return 0;
+
+    let best = null;
+    let curr_count = null;
+    let i = 0;
+    while(i < coins.length){
+        if(coins[i] < amount){
+            curr_count = minChange(coins, amount - coins[i], memo);
+        } else {
+            break;
+        }
+
+        if(best === null) best = curr_count;
+        if(best > curr_count) best = curr_count;
+        i++;
+    }
+
+    memo[amount] = best;
+    return memo[amount];
 }
 
 

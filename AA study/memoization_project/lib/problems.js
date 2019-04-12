@@ -69,15 +69,15 @@ function minChange(coins, amount, memo = {}) {
     //minChanges
     // need to find a way to find optimal path for each value.
     // for each amount, we will give a recursive call to each possible denomination that can be removed, and return the combination with the smallest count.
-    if (memo[amount]) return memo[ammount];
+    if (memo[amount]) return memo[amount];
     if(amount === 0) return 0;
 
     let best = null;
     let curr_count = null;
     let i = 0;
     while(i < coins.length){
-        if(coins[i] < amount){
-            curr_count = minChange(coins, amount - coins[i], memo);
+        if(coins[i] <= amount){
+            curr_count = 1 + minChange(coins, amount - coins[i], memo);
         } else {
             break;
         }

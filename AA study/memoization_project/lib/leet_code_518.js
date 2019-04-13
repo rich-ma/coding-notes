@@ -17,37 +17,37 @@ function change(amount, coins, memo = {}) {
 
   return memo[key];
 };
-// function change(amount, coins) {
-//   let result = helper(amount, coins);
-//   if (result) return result.length;
-//   return 0;
-// };
+function change(amount, coins) {
+  let result = helper(amount, coins);
+  if (result) return result.length;
+  return 0;
+};
 
-// function helper(amount, coins, memo = {}) {
-//   if (memo[amount]) return memo[amount];
-//   if (amount === 0) return [[]];
-//   let result = [];
+function helper(amount, coins, memo = {}) {
+  if (memo[amount]) return memo[amount];
+  if (amount === 0) return [[]];
+  let result = [];
 
-//   coins.forEach(coin => {
-//     if (amount >= coin) {
-//       let curr_change = helper(amount - coin, coins, memo);
-//       if (curr_change) {
-//         curr_change.forEach(combination => {
-//           let b = combination.slice();
-//           b.push(coin);
-//           b = b.sort();
-//           if (!result.some((prev_res) => {
-//               return JSON.stringify(prev_res) === JSON.stringify(b)
-//             })) result.push(b);
-//         });
-//       };
-//     }
-//   });
+  coins.forEach(coin => {
+    if (amount >= coin) {
+      let curr_change = helper(amount - coin, coins, memo);
+      if (curr_change) {
+        curr_change.forEach(combination => {
+          let b = combination.slice();
+          b.push(coin);
+          b = b.sort();
+          if (!result.some((prev_res) => {
+              return JSON.stringify(prev_res) === JSON.stringify(b)
+            })) result.push(b);
+        });
+      };
+    }
+  });
 
-//   if (result.length === 0) return 0;
-//   memo[amount] = result;
-//   return memo[amount];
-// };
+  if (result.length === 0) return 0;
+  memo[amount] = result;
+  return memo[amount];
+};
 
-console.log(helper(5, [1,2,5]));
+console.log(helper(500, [1,2,5]));
 // console.log(change(5000, [11,24, 37, 50, 63, 76, 89, 102]));

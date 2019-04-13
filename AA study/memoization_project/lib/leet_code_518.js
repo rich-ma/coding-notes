@@ -8,16 +8,14 @@ function change(amount, coins) {
   coins.forEach(coin => {
     if (amount >= coin) {
       let curr_change = change(amount - coin, coins);
-      if (curr_change) {
-        curr_change.forEach(combination => {
+      if(curr_change){
+        curr_change.forEach( combination => {
           combination.push(coin);
           combination.sort();
-          if(result.every(prev_res => {
-              !_.isEqual(prev_res, combination);
-            })){
-            result.push(combination);
-          }
-        });
+          if (!result.some((prev_res) => {
+              return JSON.stringify(prev_res) === JSON.stringify(combination)
+            })) result.push(combination);
+        });        
       };
     }
   });
@@ -25,3 +23,5 @@ function change(amount, coins) {
   if (result.length === 0) return 0;
   return result;
 };
+
+console.log(change(4,[1,2]));

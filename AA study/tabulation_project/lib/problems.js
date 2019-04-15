@@ -22,15 +22,16 @@
 // stepper([2, 3, 1, 1, 0, 4, 7, 8])    // => false, there is no way to step to the end
 function stepper(nums) {
     let table = new Array(nums.length).fill(false);
-    table[0] === true;
+    table[0] = true;
 
     for( let i = 0; i < nums.length; i++){
-        for( let j = 1; j <= nums[i]; j++){
-            // if(i + j >= nums.length) return true;
-            table[i + j] = true;
+        if(table[i] === true){
+            for( let j = 1; j <= nums[i]; j++){
+                if(i + j >= nums.length) return true;
+                table[i + j] = true;
+            }
         }
     }
-
     return table[nums.length - 1];
 }
 

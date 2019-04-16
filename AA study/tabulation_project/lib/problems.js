@@ -62,20 +62,33 @@ function stepper(nums, memo = {}){
 //
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
-function maxNonAdjacentSum(nums) {
+// function maxNonAdjacentSum(nums) {
+//     if(nums.length === 0) return 0;
+//     let table = new Array(nums.length).fill(0);
+//     table[0] = nums[0];
+
+//     for( let i = 1; i < nums.length; i++){
+//         let take = table[i - 2] ? table[i - 2] + nums[i] : 0;
+//         let skip = table[i - 1];
+//         table[i] = take > skip ? take : skip;
+//     }
+
+//     return table[table.length - 1];
+// }
+
+function maxNonAdjacentSum(nums, memo = {}){
+    if(nums.length in memo) return memo[nums.length];
     if(nums.length === 0) return 0;
-    let table = new Array(nums.length).fill(0);
-    table[0] = nums[0];
+    if(nums.length === 1) return nums[0];
 
-    for( let i = 1; i < nums.length; i++){
-        let take = table[i - 2] ? table[i - 2] + nums[i] : 0;
-        let skip = table[i - 1];
-        table[i] = take > skip ? take : skip;
-    }
+    let take = maxNonAdjacentSum(nums.slice(0, -2), memo) + nums[nums.length - 1];
+    let skip = maxNonAdjacentSum(nums.slice(0, -1), memo);
 
-    return table[table.length - 1];
+    memo[nums.length] = take > skip ? take : skip;
+
+    return memo[nums.length];
+
 }
-
 
 // Write a function, minChange(coins, amount), that accepts an array of coin values
 // and a target amount as arguments. The method should the minimum number of coins needed

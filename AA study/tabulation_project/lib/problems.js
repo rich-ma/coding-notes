@@ -103,7 +103,19 @@ function maxNonAdjacentSum(nums, memo = {}){
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
 function minChange(coins, amount) {
+	let table = new Array(amount + 1).fill(Infinity);
+  table[0] = 0;
 
+  coins.forEach(coin => {
+    for( let amt = 0; amt < table.length; amt++ ){
+      for( let qty = 0; qty * coin <= amt; qty++ ){
+				let remainder = amount - (qty * coin);
+				let possCom = table[remainder] + qty;
+				if(possCom < table[amt]) table[amt] = possCom;
+			}
+		}
+	})
+	return table[table.length - 1];
 }
 
 

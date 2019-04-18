@@ -7,10 +7,16 @@ function minPathSum(grid) {
 
 	for( let m = 0; m < grid.length; m++){
 		for( let n = 0; n < grid[0].length; n++){
-			if(m === 0 && n==0) continue;
-			let top = m-1 >= 0 ? table[m - 1][n] : Infinity;
-			let left = n - 1 >= 0 ? table[m][n - 1] : Infinity;
-			table[m][n] = top < left ? top + grid[m][n] : left + grid[m][n];
+			if( n < grid[0].length - 1){
+				table[m][n + 1] = Math.min(table[m][n] + grid[m][n + 1], table[m][n + 1]);
+			}
+			if( m < grid.length - 1){
+				table[m + 1][n] = Math.min(table[m][n] + grid[m + 1][n], table[m + 1][n]);
+			}
+			// if(m === 0 && n==0) continue;
+			// let top = m-1 >= 0 ? table[m - 1][n] : Infinity;
+			// let left = n - 1 >= 0 ? table[m][n - 1] : Infinity;
+			// table[m][n] = top < left ? top + grid[m][n] : left + grid[m][n];
 		}
 	}
 

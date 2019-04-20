@@ -1,7 +1,8 @@
 function swap(array, idx1, idx2) {
- if(array[idx1] > array[idx2]){
-	 array[idx1], array[idx2] = array[idx2], array[idx1];
- }
+ let temp = array[idx1];
+ array[idx1] = array[idx2]; 
+ array[idx2] = temp;
+ return array;
 }
 
 function bubbleSort(array) {
@@ -11,7 +12,7 @@ function bubbleSort(array) {
 	while(swapped){
 		swapped = false;
 		for( let i = 0; i < array.length - iteration; i++){
-			if(array[i] < array[i + 1]){
+			if(array[i] > array[i + 1]){
 				swapped = true;
 				swap(array, i, i + 1);
 			}

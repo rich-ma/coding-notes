@@ -57,4 +57,23 @@
 - if space is important, use a in place version that doesn't create new arrays to store elements.
 
 ### Radix Sort
-- 
+- Radix sort is a non-comparison integer sorting algorithm
+- its time complexity is is the best of the other sorting algs we've seen so far, but can only be used when sorting integers.
+- Utlises a series of buckets that sort an array based on its integer at a specific level(10s, 100s, 1000s, etc)
+- By sorting the array using the order the numbers entered the buckets, we get more and more sorted the more passes we take.
+- Time complexity
+  - The best, avg, and worst case are all the same for Radix sort
+  - iterate over all n elements K times, it will always be O(n * k), where n is arr size, k is size of largest number
+- people believe that when Radix sort input contains entirely unique values, k becomes log k.
+- can end up with O(nlog(k)) or O(nlog(n)), so at worst, is equal to our fastest comparison based sorter.
+- Space
+  - uses O(n + k) space complexity
+- When do we use it?
+  - Want to use it when we need to:
+    - sort binary data, numerics, text, image data in binary format
+    - sort a list of integers, and dont know the largest value
+      - if you do know the largest value, use countingSort();
+  - Useful when k is small.
+  
+### Counting Sort
+

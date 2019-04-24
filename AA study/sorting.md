@@ -42,3 +42,19 @@
 - time complexity: O(nlog(n))
 - log n because it splits in half each call, and n because merge runs in n time, so n*log(n)
 
+### Quick Sort
+- Similar divide and conquer as merge sort
+- divide input array into two subarrays, one with smaller elements, and one with larger elements
+- continue this process until the arrays are length 1 or less.
+- Find a pivot, put all elements smaller than it to the left, larger to the right
+- repeat this for all smaller elements.
+![quicksort](https://s3-us-west-1.amazonaws.com/appacademy-open-assets/data_structures_algorithms/efficient_sorting_algorithms/quick_sort/images/QuickSort.gif)
+
+- Time complexity
+  - avg case: O(nlog(n))
+  - worst case: O(n^2)
+- much more efficient than mergeSort, the recursive code is much lighter.
+- if space is important, use a in place version that doesn't create new arrays to store elements.
+
+### Radix Sort
+- 

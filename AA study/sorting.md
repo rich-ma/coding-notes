@@ -76,4 +76,20 @@
   - Useful when k is small.
   
 ### Counting Sort
+- Another non-comparison sort, like Radix Sort.
+- Very fast, but only usable for integer sorting, and we **must** know the largest integer value in the input array.
+- Exploits property of integer data type, linked to array data structure.
+- going to take advantage of the fact that arrays indices are integers, and presorted for us.
+- will use array as a storage device to count the number of occurences of each integer in out input.
 
+#### Time and Space complexity
+- best avg, wrst are all the same
+- iterating over all n elements, and interate over each elemtn in our counter array(lenghtk) we get O(n + k) run time.
+- Space complexity is O(k), so the larger the number the worse
+
+- Use counting sort when:
+  - sorted a liste of integer data and you know the largest element
+  - if you dont, use RadixSort
+
+## Binary Search
+- 

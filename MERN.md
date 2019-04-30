@@ -45,4 +45,25 @@
 - Can put debuggers into the code as well
   - will hit debuggers and debug it in chrome console.
 
+## Mongoose
+- A Straight forward schema based solution to model application data
+- built in type casting, validation, query building, business logic hooks, and more
 
+
+## bcrypt
+- used to create a password salt
+- bcrypt.genSalt(number of times to salt, callback function(err, salt) => {
+  - bcrypt.hash(newUser.password, salt, (err, hash) => {
+    - if(err) throw err;
+    - newUser.password = hash;
+    - 
+  - }
+- })
+
+## User Auth
+- We use Bcrypt to salt a pw for user login
+- we use bcrpyt to compare the salted password with the entered password
+- we use JSON web token 
+
+## passport
+- 

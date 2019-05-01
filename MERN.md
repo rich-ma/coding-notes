@@ -63,7 +63,69 @@
 ## User Auth
 - We use Bcrypt to salt a pw for user login
 - we use bcrpyt to compare the salted password with the entered password
-- we use JSON web token 
+- we use JSON web token to authenticate a user to login 
+```javascript
+// users.js
+bcrypt.compare(password, user.password)
+  .then(isMatch => {
+    if (isMatch) {
+      const payload = {id: user.id, name: user.name};
+
+      jwt.sign(
+        payload,
+        keys.secretOrKey,
+        // Tell the key to expire in one hour
+        {expiresIn: 3600},
+        (err, token) => {
+          res.json({
+            success: true,
+            token: 'Bearer ' + token
+          });
+        });
+    } else {
+      return res.status(400).json({password: 'Incorrect password'});
+    }
+	})
+```
+- this code returns a signed web token for each login or register request to sign the user in on the front end.
+- 
+
 
 ## passport
-- 
+- Use passport to authenticate our token and construct private routes
+- We had register and login save a jwt web token that we will want to use to authenticate every API request to the backend
+- passport does this using different strategies, int his case we will be using JwtStrategy.
+```javascript
+// passport.js
+
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const mongoose = require('mongoose');
+const User = mongoose.model('users');
+const keys = require('../config/keys');
+
+const options = {};
+options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+options.secretOrKey = keys.secretOrKey;
+
+module.exports = passport => {
+  passport.use(new JwtStrategy(options, (jwt_payload, done) => {
+		User.findById(jwt_payload.id).then(user => {
+			if(user){
+				return done(null, user);
+			}
+			return done(null, false);
+		})
+		.catch(err => console.log(err));
+	}));
+};
+```
+- this is the passport payload, checks if a user with that correct credentials(id, auth token) exists
+- Passport is dealing with JSON web token strategy
+- JWTStrategy tells passport we want strat got jwt
+- ExtractJWT, 
+- options.jwtfromrequest, gets the jwt extracted from the header
+- options secretOrKey = keys.secretOrKeys
+- Passport uses the JWTStrategy, takes options, and a callback
+  - callback takes payload(items we specified), done
+- Done: keyword from express middleware, tells it to pass onto next middleware, 

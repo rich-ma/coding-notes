@@ -160,4 +160,19 @@ module.exports = passport => {
   - const validateLoginInput = require(...);
   - then within the correct routes, we call the function, set it to variables, and use those varaibles to check.
   - if its not valid, we will send up the errors object alongside a 400 error.
-  - 
+
+
+# frontend 
+
+## AXIOS
+- Allows us to make requests to our server from the frontend.
+- we will be using AXIOs requests instead of AJAX like we did in rails
+- axios allows us to set a common header for requests, only have to do this once on login(or user refresh to check if jwt is still valid)
+
+## frontend auth
+- we will create a session api util that will have a setAuthToken method that will check if a valid token is there or not, and can ensure that it is removed one our user is logged out or the token expires.
+
+### User logout
+- we will store a boolean in our state to indiciate if our user is authenticated or not.
+- we can map this slice of state to our componenets to selectively render different information(like we did in disunity)
+- `

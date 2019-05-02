@@ -128,4 +128,36 @@ module.exports = passport => {
 - options secretOrKey = keys.secretOrKeys
 - Passport uses the JWTStrategy, takes options, and a callback
   - callback takes payload(items we specified), done
-- Done: keyword from express middleware, tells it to pass onto next middleware, 
+- Done: keyword from express middleware, tells it to pass onto next middleware
+
+### passport for verifying posts
+- add user onto request by using passport, this allows us to confirm the user is the poster.
+- we add passport as the second middleware function (router,post('/', passport.authenticate('jtw', {session: false}), (req, res) => {
+- 
+- 
+- 
+- }))
+  - -within this we call the post validator, checking thigns like actual links, not empty, etc.
+
+
+## Login Routes
+
+
+## Validator
+- use (input + '') to coerce inputs to string
+- Easy way to put model level validations in the same place
+- valid-text.js
+  - function that takes in a string, and checks if it is a string or not.
+  - use this to help validate user inputs
+  - checks that it is a string, removes extra white space, and that its length > 0;
+- Validator gives us a bunch of functions that we can use to help validate various things, emails, pws, usersnames, etc.
+- We want to create a validation file for each process(login, register, etc)
+- confirm each item in the body(username, password, email)
+- then we validate required fields such as length, meet specific requirements like email formatting, password requirements, etc)
+- Store the errors in an errors object, and return it in an object {errors, Integer}
+- Using Validators in controller/route files(users.js, )
+  - const viladateRegisterInput = require(....);
+  - const validateLoginInput = require(...);
+  - then within the correct routes, we call the function, set it to variables, and use those varaibles to check.
+  - if its not valid, we will send up the errors object alongside a 400 error.
+  - 

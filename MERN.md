@@ -168,6 +168,7 @@ module.exports = passport => {
 - Allows us to make requests to our server from the frontend.
 - we will be using AXIOs requests instead of AJAX like we did in rails
 - axios allows us to set a common header for requests, only have to do this once on login(or user refresh to check if jwt is still valid)
+- super convenient for conditional rendering in the future
 
 ## frontend auth
 - we will create a session api util that will have a setAuthToken method that will check if a valid token is there or not, and can ensure that it is removed one our user is logged out or the token expires.
@@ -176,3 +177,10 @@ module.exports = passport => {
 - we will store a boolean in our state to indiciate if our user is authenticated or not.
 - we can map this slice of state to our componenets to selectively render different information(like we did in disunity)
 - `
+
+## root component
+- use hash router, like before and provide the store to each sub-component
+
+## Route Util
+- We will replicate our protected routes from full stack, but in a different way
+- We use custom Protected components to ensure users can only access certain information if they are logged in, if they are already logged in and attempt to visit the login or signup page, they will be redirected.

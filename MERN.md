@@ -184,3 +184,13 @@ module.exports = passport => {
 ## Route Util
 - We will replicate our protected routes from full stack, but in a different way
 - We use custom Protected components to ensure users can only access certain information if they are logged in, if they are already logged in and attempt to visit the login or signup page, they will be redirected.
+
+## User login-
+- we use the APIUtil's login function to login the user, the response of which will return the token
+- we set the token to the jwtToken, and then use the jwt+decoder to decode the token for the user and send that to the reducers with the current user.
+
+## user logout
+- need to be able to do a few things to log out correctly
+- first need to remove our user and authentication from the state
+- then we need to remove our auth token from our axios default header
+- need to remove jwtToken off the local storage as well

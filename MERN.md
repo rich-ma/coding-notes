@@ -194,3 +194,5 @@ module.exports = passport => {
 - first need to remove our user and authentication from the state
 - then we need to remove our auth token from our axios default header
 - need to remove jwtToken off the local storage as well
+- send our logout to our reducers so that we can modify our store.session
+- 

@@ -13,6 +13,9 @@ import PhotoGrid from './components/PhotoGrid';
 
 //import react router dependencies
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Provider } from 'react-redux'; 
+
+import store, { history } from './store';
 
 //creating a router that uses our Main as its component
 //history allows us to change history, and Route lets us match routes we want to go to

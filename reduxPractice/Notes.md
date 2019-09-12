@@ -47,4 +47,9 @@
 - Connect allows us to pass props directly to the component that we want without having to pass it along all children
 
 ## displaying redux state inside components
-- 
+
+## reducers
+-	redux uses functional programming
+- we don't mutate our state and use pure function
+  - pure functions are functions that give a predictable output without modifying anything that is outside of its function.
+  - We make a copy, modify it, and then return new state so we don't modify the old one

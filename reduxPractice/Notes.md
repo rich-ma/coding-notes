@@ -53,3 +53,9 @@
 - we don't mutate our state and use pure function
   - pure functions are functions that give a predictable output without modifying anything that is outside of its function.
   - We make a copy, modify it, and then return new state so we don't modify the old one
+- pure functions don't mutate external state, and are predictable
+- reducers get run for every action, we use a switch statement to act on it
+- the switch of each reducer will check the action.type to find ones it want to react on(like a controller in MVC model)
+- default state will return state
+  - if we don't act on that specific action, we should return the default state to not modify anything
+- 

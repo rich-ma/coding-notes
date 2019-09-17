@@ -1,17 +1,30 @@
-function comments(state = [], action) {
+// function postComments(state = [], action){
+// 	switch(action.type){
+// 		case 'ADD_COMMENT':
+			
 
-	console.log('action', action.postId);
+// 		default:
+// 			return state;
+// 	}
+
+
+// 	return state;
+// }
+
+
+
+function comments(state = [], action) {
 	let newState = Object.assign({}, state);
-	console.log('newState', newState);
 
 	switch(action.type){
 		case 'ADD_COMMENT':
-			let postId = action.postId;
-			newState[postId].push({
+			newState[action.postId].push({
 				text: action.comment, 
 				user: action.author
 			})
-			console.log(newState[postId]);
+			return newState;
+		case 'REMOVE_COMMENT':
+			newState[postId].splice(action.i, 1);
 			return newState;
 		default:
 			return state;
@@ -19,3 +32,4 @@ function comments(state = [], action) {
 }
 
 export default comments;
+

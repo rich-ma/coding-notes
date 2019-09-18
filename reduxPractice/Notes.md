@@ -58,4 +58,10 @@
 - the switch of each reducer will check the action.type to find ones it want to react on(like a controller in MVC model)
 - default state will return state
   - if we don't act on that specific action, we should return the default state to not modify anything
+
+
+# Sentry error tracking
+- tracks error on prod to see what errors users console had
+- give us insight on what happened
+- tracks errors by browser as well, and OS, and url
 - 

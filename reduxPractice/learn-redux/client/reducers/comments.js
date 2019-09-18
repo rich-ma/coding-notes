@@ -12,7 +12,6 @@
 // }
 
 
-
 function comments(state = [], action) {
 	let newState = Object.assign({}, state);
 
@@ -24,7 +23,7 @@ function comments(state = [], action) {
 			})
 			return newState;
 		case 'REMOVE_COMMENT':
-			newState[postId].splice(action.i, 1);
+			newState[action.postId].splice(action.i, 1);
 			return newState;
 		default:
 			return state;

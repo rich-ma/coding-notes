@@ -17,10 +17,13 @@ function comments(state = [], action) {
 
 	switch(action.type){
 		case 'ADD_COMMENT':
-			newState[action.postId].push({
+			newState[action.postId] ? newState[action.postId].push({
 				text: action.comment, 
 				user: action.author
-			})
+			}): newState[action.postId] = [{
+				text: action.comment,
+				user: action.author
+			}];
 			return newState;
 		case 'REMOVE_COMMENT':
 			newState[action.postId].splice(action.i, 1);

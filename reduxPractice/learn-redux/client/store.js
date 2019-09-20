@@ -16,8 +16,12 @@ const defaultState = {
 	comments
 };
 
-//database where we put all our info for the page
-const store = createStore(rootReducer, defaultState);
+const enhancers = compose(
+	window.devToolsExtension ? window.devToolsExtension() : f => f
+);
+
+const store = createStore(rootReducer, defaultState, enhancers);
+
 
 export const history = syncHistoryWithStore(browserHistory, store);
 

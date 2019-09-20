@@ -18,9 +18,9 @@ function comments(state = [], action) {
 	switch(action.type){
 		case 'ADD_COMMENT':
 			newState[action.postId] ? newState[action.postId].push({
-				text: action.comment, 
+				text: action.comment,
 				user: action.author
-			}): newState[action.postId] = [{
+			}) : newState[action.postId] = [{
 				text: action.comment,
 				user: action.author
 			}];

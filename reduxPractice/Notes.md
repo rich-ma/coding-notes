@@ -65,3 +65,7 @@
 - give us insight on what happened
 - tracks errors by browser as well, and OS, and url
 - 
+
+## hot reloading reducers
+- need to accept hot reloading reducers and rerequire the reducer
+- will recompile root reducer and swap it out with having to full refresh

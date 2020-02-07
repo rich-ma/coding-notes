@@ -30,3 +30,24 @@ Sample Output 0
 Explanation 0
 
 We have one candle of height , one candle of height , and two candles of height . Your niece only blows out the tallest candles, meaning the candles where . Because there are  such candles, we print  on a new line.
+
+```javascript
+function birthdayCakeCandles(ar) {
+    let highest = [0, 0];
+
+    ar.forEach((num, i) => {
+        if(num > highest[0]){
+            highest[0] = num;
+            highest[1] = 1;
+        } else if(num === highest[0]){
+            highest[1] += 1;
+        }else{
+
+        }
+    })
+
+    return highest[1];
+}
+```
+- use an array(could have used a pojo), first number stores the highest num, second one stores the count.
+  

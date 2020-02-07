@@ -37,3 +37,21 @@ If we sum everything except , our sum is .
 If we sum everything except , our sum is .
 If we sum everything except , our sum is .
 Hints: Beware of integer overflow! Use 64-bit Integer.
+
+
+```javascript
+
+function miniMaxSum(arr) {
+
+    let lowest = arr[0], highest = arr[0];
+    let total = 0;
+
+    arr.forEach(num => {
+        if(num < lowest) lowest = num;
+        if(num > highest) highest = num;
+        total += num;
+    })
+
+    console.log(total - highest, total - lowest);
+}
+```

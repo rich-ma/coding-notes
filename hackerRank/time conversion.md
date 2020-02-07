@@ -26,3 +26,27 @@ Sample Input 0
 Sample Output 0
 
 19:05:45
+
+
+```javascript
+function timeConversion(s) {
+    /*
+     * Write your code here.
+     */
+    let afterNoon = s[8] === 'P' ? true : false;
+    let hour = parseInt(s.slice(0,2));
+    if (hour === 12) hour = 0;
+
+    if(afterNoon) hour += 12;
+    if(hour < 10) hour = '0' + hour;
+
+    return hour + s.slice(2, 8);
+}
+```
+I determine AM/PM, then determine the hour.
+
+PM is essentially AM+12hr, except for the midnight-1AM case where AM/PM displays 12:xx, but 24 hour would display 00:xx.  
+
+In this case I just reduce all 12 hours to 0, and add 12 to the hour in the case of PM.
+
+Then I add a 0 to fit the formatting of hh:mm:ss

@@ -67,3 +67,29 @@ So the final state is  after three bribing operations.
 Test Case 2
 
 No person can bribe more than two people, so its not possible to achieve the input state.
+
+
+```javascript
+function minimumBribes(q) {
+    let count = 0;
+    let chaotic = false;
+    
+    q.forEach((place, i) => {
+        if(place > i + 1) count += i + 1 - place;
+        
+        if((place - i - 1) > 2) {
+            chaotic = true;
+        }
+    })
+    // let swaps = Math.ceil(count / 2);
+
+    if(chaotic) {
+        console.log('Too chaotic');
+    } else {
+        console.log(count);
+    }
+}
+```
+
+- see how many times a number has made a deal
+- see if a number has brided more than once

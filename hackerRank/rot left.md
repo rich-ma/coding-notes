@@ -33,3 +33,9 @@ Explanation
 When we perform  left rotations, the array undergoes the following sequence of changes:
 
 
+```javascript
+function rotLeft(a, d) {
+    let rot = d % a.length;
+    return a.slice(rot).concat(a.slice(0, rot));
+}
+```

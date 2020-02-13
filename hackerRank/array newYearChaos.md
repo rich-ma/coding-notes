@@ -70,18 +70,18 @@ No person can bribe more than two people, so its not possible to achieve the inp
 
 
 ```javascript
+// Complete the minimumBribes function below.
 function minimumBribes(q) {
     let count = 0;
     let chaotic = false;
     
     q.forEach((place, i) => {
-        if(place > i + 1) count += i + 1 - place;
         
-        if((place - i - 1) > 2) {
+        if(place < i + 1) count += (i + 1) - place;
+        if((place - (i + 1)) > 2) {
             chaotic = true;
         }
     })
-    // let swaps = Math.ceil(count / 2);
 
     if(chaotic) {
         console.log('Too chaotic');
@@ -89,7 +89,11 @@ function minimumBribes(q) {
         console.log(count);
     }
 }
+
 ```
 
-- see how many times a number has made a deal
-- see if a number has brided more than once
+- need to account for when a number moves past one thats been bribed already.
+
+
+[1,2,6,5,4,3]
+[0,1,2,3,4,5]

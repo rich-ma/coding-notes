@@ -41,3 +41,23 @@ We have  pairs to check:
 
 , . The substrings  and  are common to both strings.
 , .  and  share no common substrings.
+
+
+```javascript
+function twoStrings(s1, s2) {
+    let letters = {};
+    let overlap = false;
+    s1.split('').forEach(char => letters[char] = true);
+    s2.split('').forEach(char =>{
+        if(letters[char]) {
+            overlap = true;
+        }
+    })
+
+    if(overlap){
+        return ("YES");
+    } else {
+        return ('NO');
+    }
+}
+```

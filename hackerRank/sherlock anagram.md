@@ -110,20 +110,19 @@ function sherlockAndAnagrams(s) {
 
 }
 
-function main() {
-    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+function sherlockAndAnagrams(s) {
+    let count = 0;
+    let substrings = {};
 
-    const q = parseInt(readLine(), 10);
-
-    for (let qItr = 0; qItr < q; qItr++) {
-        const s = readLine();
-
-        let result = sherlockAndAnagrams(s);
-
-        ws.write(result + "\n");
+    for(let i = 0; i < s.length; i++){
+        let j = i + 1;
+        while(j <= s.length){
+            let substring = s.slice(i,j);
+            substrings[substring.length]
+            j++;
+        }
     }
 
-    ws.end();
 }
 
 ```
@@ -131,3 +130,5 @@ function main() {
 - sort strings by length, store into a pojo
 - see if string already exists, if not check other strings of same length
 - check each character 
+
+- changed it from a forEach after splitting the string, to just nested loops using indexes to loop through the string to grab all the substrings

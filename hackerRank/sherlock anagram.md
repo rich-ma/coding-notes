@@ -118,13 +118,17 @@ function sherlockAndAnagrams(s) {
         let j = i + 1;
         while(j <= s.length){
             let substring = s.slice(i,j);
+            let charObj = {};
+            substring.split('').forEach( ch => {
+                if(!charObj[ch]) charObj[ch] = 0;
+                charObj[ch] += 1;
+            })
             substrings[substring.length]
             j++;
         }
     }
 
 }
-
 ```
 
 - sort strings by length, store into a pojo

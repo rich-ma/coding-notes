@@ -53,3 +53,29 @@ Sample Output 2
 Explanation 2
 
 The triplets satisfying are index , , , .
+
+
+```javascript
+function countTriplets(arr, r) {
+    let dict = {};
+    let count = 0;
+    arr.forEach(num => {
+        if(!dict[num]){
+            dict[num] = 0;
+        }
+
+        dict[num] += 1;
+    })
+
+    Object.keys(dict).forEach( num => {
+        if(dict[num * r] && dict[num * r * r]){
+						count += dict[num] * dict[num*r] * dict[num*r*r];           
+						}
+    })
+
+    return count;
+}
+```
+
+- first attempt at counttriplets
+- need to account for when r = 1

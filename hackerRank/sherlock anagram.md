@@ -116,6 +116,7 @@ function sherlockAndAnagrams(s) {
 
     for(let i = 0; i < s.length; i++){
         let j = i + 1;
+
         while(j <= s.length){
             let substring = s.slice(i,j);
             let charObj = {};
@@ -123,10 +124,25 @@ function sherlockAndAnagrams(s) {
                 if(!charObj[ch]) charObj[ch] = 0;
                 charObj[ch] += 1;
             })
-            substrings[substring.length]
+
+            //check if anything of this length exists, if it does, check for anagrams, if non exist, push this one in. 
+            if(substrings[substring.length]){
+
+                //checking each substring of the same length
+               substrings[substring.length].forEach( sub => {
+                   
+               }) 
+            } else {
+                substrings[substring.length] = [];
+            }
+            
+            substrings[substring.length].push(charObj);
+            
+
             j++;
-        }
-    }
+        };
+
+    };
 
 }
 ```

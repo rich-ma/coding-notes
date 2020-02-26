@@ -92,24 +92,6 @@ process.stdin.on('end', _ => {
     main();
 });
 
-function readLine() {
-    return inputString[currentLine++];
-}
-
-// Complete the sherlockAndAnagrams function below.
-function sherlockAndAnagrams(s) {
-    let count = 0;
-    let substrings = {};
-
-    s.split('').forEach((ch, i) =>{
-        let j = i;
-        while(j < s.length - 1){
-            if(substrings[6])
-        }
-    })
-
-}
-
 function sherlockAndAnagrams(s) {
     let count = 0;
     let substrings = {};
@@ -119,31 +101,31 @@ function sherlockAndAnagrams(s) {
 
         while(j <= s.length){
             let substring = s.slice(i,j);
-            let charObj = {};
-            substring.split('').forEach( ch => {
-                if(!charObj[ch]) charObj[ch] = 0;
-                charObj[ch] += 1;
-            })
-
-            //check if anything of this length exists, if it does, check for anagrams, if non exist, push this one in. 
-            if(substrings[substring.length]){
-
-                //checking each substring of the same length
-               substrings[substring.length].forEach( sub => {
-                   
-               }) 
+            substring = substring.split('').sort().join('');
+            if(substrings[substring]){
+                count += substrings[substring];
+                substrings[substring] += 1;
             } else {
-                substrings[substring.length] = [];
+                substrings[substring] = 1;
             }
-            
-            substrings[substring.length].push(charObj);
-            
 
             j++;
+            // //check if anything of this length exists, if it does, check for anagrams, if non exist, push this one in. 
+            // if(substrings[substring.length]){
+
+            //     //checking each substring of the same length
+            //    substrings[substring.length].forEach(sub => {
+
+            //    }) 
+            // } else {
+            //     substrings[substring.length] = [];
+            // }
+            
+            // substrings[substring.length].push(charObj);
         };
 
     };
-
+    return count;
 }
 ```
 
@@ -152,3 +134,8 @@ function sherlockAndAnagrams(s) {
 - check each character 
 
 - changed it from a forEach after splitting the string, to just nested loops using indexes to loop through the string to grab all the substrings
+
+
+## final change
+- decided to split and sort each string and see if one of that exact string matched.  If it did, i would keep count of how many there were, and then increase the count of anagrams by the number of existing strings that match.
+- 

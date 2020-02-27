@@ -56,15 +56,24 @@ The triplets satisfying are index , , , .
 
 
 ```javascript
+// Complete the countTriplets function below.
 function countTriplets(arr, r) {
     let dict = {};
+    let dictSecond = {};
     let count = 0;
-    arr.forEach(num => {
-        if(dict[num/r] && dict[num/(r*r)]){
-            count += dict[(num/r)] * dict[(num/(r*r))];
-        }
-        if(!dict[num]) dict[num] = 0;
 
+    arr.forEach(num => {
+        //sees if first value in the triplet exists, if it does, logs how many if the first value are earlier in the array and stores that value in an array
+        if(dict[num/r]){
+            dictSecond[num] ? dictSecond[num] += dict[num/r] : dictSecond[num] = dict[num/r]
+        }
+
+        //checks to see if there are already any first and seconds in a triplet that exists and adds those values to count
+        if(dictSecond[num/r]){
+           count += dictSecond[num/r];
+        }
+
+        if(!dict[num]) dict[num] = 0;
         dict[num] += 1;
     })
 
@@ -78,8 +87,6 @@ function countTriplets(arr, r) {
 
     return count;
 }
-
-}
 ```
 
 - first attempt at counttriplets
@@ -90,3 +97,5 @@ function countTriplets(arr, r) {
 
 - new code, but still doesnt address the first and second number not being in order 
 - fixed issue with r = 1, used combinatorial statistics 
+
+- finished the problem by creating a dictSecond that added each value.  Initially stored the values of each of the first of the triplets at each index, but it dosent matter since every time we enoucnter it, we are already adding how many we've passed

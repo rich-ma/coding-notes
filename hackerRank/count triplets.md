@@ -60,20 +60,25 @@ function countTriplets(arr, r) {
     let dict = {};
     let count = 0;
     arr.forEach(num => {
-        if(!dict[num]){
-            dict[num] = 0;
+        if(dict[num/r] && dict[num/(r*r)]){
+            count += dict[(num/r)] * dict[(num/(r*r))];
         }
+        if(!dict[num]) dict[num] = 0;
 
         dict[num] += 1;
     })
 
-    Object.keys(dict).forEach( num => {
-        if(dict[num * r] && dict[num * r * r]){
-						count += dict[num] * dict[num*r] * dict[num*r*r];           
-						}
-    })
+    if(r === 1){
+        count = 0;
+        Object.keys(dict).forEach( num => {
+            const factorialTop = dict[num] * (dict[num] - 1) * (dict[num] - 2);
+            count += factorialTop/6;
+        })
+    };
 
     return count;
+}
+
 }
 ```
 
@@ -82,3 +87,6 @@ function countTriplets(arr, r) {
 
 - need to account for when triplets are not in order in index.  
 - old version counted all values, need to only count the ones in order
+
+- new code, but still doesnt address the first and second number not being in order 
+- fixed issue with r = 1, used combinatorial statistics 

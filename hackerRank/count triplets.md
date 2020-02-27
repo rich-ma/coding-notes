@@ -79,3 +79,6 @@ function countTriplets(arr, r) {
 
 - first attempt at counttriplets
 - need to account for when r = 1
+
+- need to account for when triplets are not in order in index.  
+- old version counted all values, need to only count the ones in order

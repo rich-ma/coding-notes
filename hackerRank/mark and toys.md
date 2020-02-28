@@ -36,3 +36,25 @@ Sample Output
 Explanation
 
 He can buy only  toys at most. These toys have the following prices: .
+
+```javascript
+function maximumToys(prices, k) {
+    let sorted = prices.slice();
+    sorted = sorted.sort((a, b) => a - b);
+    let money = k;
+    let count = 0;
+
+    sorted.forEach(price => {
+        if(money >= price){
+            count += 1;
+            money = money - price;
+        }
+
+        if(money === 0 || money < price) return;
+    })
+
+    return count; 
+}
+
+```
+- sort in javascript sorts alphabetically, instead we use a function to sort ascending where (a,b) => a - b;

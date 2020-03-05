@@ -24,4 +24,23 @@ def count_vowels(word)
 end
 //create a vowel string, would have been better to create an object
 
+
+def sum_nums(max)
+  count = 0
+  (1..max).sum()
+end
+// use a range in ruby to general an array from 1..max
+// using two dots is inclusive of the last, three is exclusive
+
+def factorial(num)
+	(1..num).reduce(:*)
+end
+//uses another range, this time and reduce and pass in the :* to find the factorial.  
+
+def reverse(word)
+	result = ''
+  	word.each_char {|ch| result = ch + result}
+  return result
+end
+//we use the enumerable each_char here and unshift each character into result, which is rearranging them in reverse order.
 ```

@@ -43,4 +43,21 @@ def reverse(word)
   return result
 end
 //we use the enumerable each_char here and unshift each character into result, which is rearranging them in reverse order.
+
+def is_palindrome(word)
+  i = 0
+  j = word.length - 1
+  
+  until(i > j || i == j)
+    if word[i] != word[j]
+      return false 
+    end
+    i += 1
+    j -= 1
+  end
+  
+  return true
+end
+//start indices at the start and end of the word, progress one closer each loop until we find one not equal, or the indices are equal or switch places.
+// this tell us it is true
 ```

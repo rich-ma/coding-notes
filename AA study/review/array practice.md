@@ -48,8 +48,45 @@ def even_nums(max)
 end
 
 ```
-
+First Half
+Write a method first_half(array) that takes in an array and returns a new array containing the first half of the elements in the array. If there is an odd number of elements, return the first half including the middle element.
 ```ruby
+def first_half(array)
+ middle = (array.length/2.0).ceil()
+  [0...middle].map {|i| array[i]}
+end
+```
+- could do middle = ... - 1
+- and then do [0..middle] to exclude it as well.  Either way works
+
+
+Select Odds
+Write a method select_odds(numbers) that takes in an array of numbers and returns a new array containing the odd numbers of the original array.
+```ruby
+def select_odds(numbers)
+	numbers.select {|num| num % 2 == 1}
+end
+```
+- use select instead of select! to not modify original, and to return new array
+- use mod2 to grab odds
+
+Fizz Buzz
+Write a method fizz_buzz(max) that takes in a number max and returns an array containing all numbers greater than 0 and less than max that are divisible by either 4 or 6, but not both.
+```ruby
+def fizz_buzz(max)
+  i = 2
+  results = []
+  
+  while i < max
+    if i % 4 == 0 && i % 6 == 0
+    elsif i % 4 == 0 || i % 6 == 0
+      results << i
+    else
+    end
+    i += 2
+  end
+  results
+end
 
 
 ```
@@ -58,3 +95,9 @@ end
 
 
 ```
+
+```ruby
+
+
+```
+

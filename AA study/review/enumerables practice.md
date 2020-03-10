@@ -38,7 +38,8 @@ Write a method abbreviate_sentence that takes in a sentence string and returns a
 def abbreviate_sentence(sent)
   sent.split(' ').map do |word|
 	if word.length > 4
-      word = word.gsub(/[aeiuo]/, '')
+			word = word.gsub(/w+/, &:downcase)
+			word[0]
     end
     word
   end.join(' ')
@@ -48,13 +49,22 @@ end
 - use enumerable map and join the resulting array
 - take advantage of ruby's default return as well.
 
+
+Format Name
+Write a method format_name that takes in a name string and returns the name properly capitalized.
 ```ruby
-
-
+def format_name(str)
+ str.split(' ').map do |name|
+   name = name.gsub(/\w+/, &:downcase)
+   name[0] = name[0].upcase
+   name[]
+ end.join(' ')
+end
 ```
+- use regex again to replace all characters to lowercase, and then change the first one to uppercase
+- i could ignore the first one and then change all but the first, but will have to check and modify it at some point
 
 ```ruby
-
 
 ```
 

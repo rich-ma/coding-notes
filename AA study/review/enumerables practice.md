@@ -132,10 +132,24 @@ end
 - this is a big O(n choose 2)
 
 
-
+Opposite Count
+Write a method opposite_count that takes in an array of unique numbers. The method should return the number of pairs of elements that sum to 0.
 ```ruby 
-
+def opposite_count(nums)
+  count = 0
+  hashObj = Hash.new(0)
+  nums.each do |num|
+    hashObj[num] += 1
+    if hashObj[-num]
+      count += hashObj[-num]
+    end
+  end
+  
+  count
+end
 ```
+- create a hash object that we can read and write on O(1)
+- add value into hash object, increase the resulting count by the number of existing 
 
 
 

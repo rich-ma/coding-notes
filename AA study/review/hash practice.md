@@ -122,19 +122,65 @@ puts
 	```
 - iterate over each key value pair, compare key to fully uppercase key
 
-
+Hand Score
+Write a method hand_score that takes in a string representing a hand of cards and returns it's total score. You can assume the letters in the string are only A, K, Q, J. A is worth 4 points, K is 3 points, Q is 2 points, and J is 1 point. The letters of the input string not necessarily uppercase.
 	```ruby 
+def hand_score(hand)
+  card_hash = { 'A' => 4, 'K' => 3, 'Q' => 2, 'J' => 1}
+  score = 0
+  
+  hand.each_char {|ch| score += card_hash[ch.upcase] }
+  
+  score
 
+end
+
+puts hand_score("AQAJ") #=> 11
+puts hand_score("jJka") #=> 9
+	```
+	- we create a hash object to store the card and their values
+	- we iterate over each 'card'(ch) in the hand and add the value to a score
+
+	Frequent Letters
+Write a method frequent_letters that takes in a string and returns an array containing the characters that appeared more than twice in the string.
+	```ruby 
+	def frequent_letters(str)
+		result_hash = Hash.new(0)
+		str.each_char {|ch| result_hash[ch] += 1}
+
+		result_hash.select {|key ,val| val >= 2}
+
+	end
+
+		def frequent_letters(str)
+		result_hash = Hash.new(0)
+		str.each_char {|ch| result_hash[ch] += 1}
+
+		result_hash.keys.select {|key| result_hash[key] > 2}
+
+	end
 	```
 
-	
+	Hash To Pairs
+Write a method hash_to_pairs that takes in a hash and returns a 2D array representing each key-value pair of the hash.
 	```ruby 
+def hash_to_pairs(hash)
+	hash.to_a
+end
 
-	```
+def hash_to_pairs(hash)
+	result = []
+  hash.each {|k,v| result << [k,v]}
+  result
+end
 
-	
-	```ruby 
 
+print hash_to_pairs({"name"=>"skateboard", "wheels"=>4, "weight"=>"7.5 lbs"}) #=> [["name", "skateboard"], ["wheels", 4], ["weight", "7.5 lbs"]]
+puts
+
+
+print hash_to_pairs({"kingdom"=>"animalia", "genus"=>"canis", "breed"=>"German Shepherd"}) #=> [["kingdom", "animalia"], ["genus", "canis"], ["breed", "German Shepherd"]]
+puts
 	```
 
 	

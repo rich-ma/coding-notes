@@ -50,28 +50,79 @@ puts
 	- another simple one to retreive a specific key and return as an array
 
 	
-	
+	Yell Sentence
+Write a method yell_sentence that takes in a sentence string and returns a new sentence where every word is yelled. See the examples. Use map to solve this.
 	```ruby 
+def yell_sentence(sent)
+ sent.split(' ').map {|word| word.upcase + '!'}.join(' ')
+end
+def yell_sentence(sent)
+	word_array = sent.split
 
+ 	word.map {|word| word.upcase + '!'}.join(' ')
+end
+
+puts yell_sentence("I have a bad feeling about this") #=> "I! HAVE! A! BAD! FEELING! ABOUT! THIS!"
 	```
 
 	
+	O Words
+Write a method o_words that takes in a sentence string and returns an array of the words that contain an "o". Use select in your solution!
+```ruby 
+def o_words(sentence)
+	sentence.split(' ').select {|word| word.include?('o') || word.include?('O')}
+end
+
+print o_words("How did you do that?") #=> ["How", "you", "do"]
+puts
+```
+- use select and include? to find words that have an o in it. 
+
 	
+	Last Index
+Write a method last_index that takes in a string and a character. The method should return the last index where the character can be found in the string.
 	```ruby 
+def last_index(str, char)
+  str.rindex(char)
+end
 
+def last_index(str, char)
+  (str.length - 1).downto(0) do |i|
+    if str[i] == char
+      return i
+    end
+  end
+end
+
+puts last_index("abca", "a")       #=> 3
+puts last_index("mississipi", "i") #=> 9
+puts last_index("octagon", "o")    #=> 5
+puts last_index("programming", "m")#=> 7
 	```
-
+- used rindex to get reversed index
+- also used downto to go from the reverse manually
 	
-	
+Most Vowels
+Write a method most_vowels that takes in a sentence string and returns the word of the sentence that contains the most vowels.	
 	```ruby 
+def most_vowels(sentence)
+  result = ''
+  count = 0
+ sentence.split.each do |word|
+   new_count = word.count('/aeiou/')
+   if new_count > count
+     count = new_count
+     result = word
+   end
+ end
+  
+  result
+end
 
+print most_vowels("what a wonderful life") #=> "wonderful"
 	```
-
-	
-	
-	```ruby 
-
-	```
+	- split each word, count the vowels using count and regex
+	- store the highest vowel count and return it
 
 	
 	

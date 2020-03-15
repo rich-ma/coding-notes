@@ -124,22 +124,169 @@ print most_vowels("what a wonderful life") #=> "wonderful"
 	- split each word, count the vowels using count and regex
 	- store the highest vowel count and return it
 
+Prime
+Write a method prime? that takes in a number and returns a boolean, indicating whether the number is prime. A prime number is only divisible by 1 and itself.
+```ruby 
+def prime?(num)
+  return false if num < 0
+  return true if num == 1 || num == 2
+  return false if num % 2 == 0
+  
+  3.upto(Math.sqrt(num)) do |i|
+    return false if num % i == 0
+  end
+  true
+end
+
+```
+- check if num is < 0
+- check if num == 1 or 2
+- remove all even numbers
+- going to the sqrt of a value is the most efficient way, you can go to num/2 as well, or num/2 - 1 to be safe
 	
 	
+	Pick Primes
+Write a method pick_primes that takes in an array of numbers and returns a new array containing only the prime numbers.
+```ruby 
+def pick_primes(numbers)
+	numbers.select {|num| prime?(num)}
+end
+
+def prime?(num)
+  return false if num < 0
+  return true if num == 1 || num == 2
+  return false if num % 2 == 0
+  
+  3.upto(Math.sqrt(num)) do |i|
+    return false if num % i == 0
+  end
+  true
+end
+
+	```
+	- use select and prime?(num) to determine which are prime values
+
+	
+	Prime Factors
+Write a method prime_factors that takes in a number and returns an array containing all of the prime factors of the given number.
 	```ruby 
+def prime_factors(num)
+  (2..num/2).select do |i|
+    num % i == 0 && prime?(i)
+  end
+end
+
+def prime?(num)
+  return false if num < 0
+  return true if num == 1 || num == 2
+  return false if num % 2 == 0
+  
+  3.upto(Math.sqrt(num)) do |i|
+    return false if num % i == 0
+  end
+  true
+end
+  
+print prime_factors(24) #=> [2, 3]
+puts
+print prime_factors(60) #=> [2, 3, 5]
+puts
+	```
+- go from 2 up to num/2 and check for primes that are also factors.  num/2 is probably uneccessary, sqrt num is probably better
+	
+
+Greatest Factor Array
+Write a method greatest_factor_array that takes in an array of numbers and returns a new array where every even number is replaced with it's greatest factor. A greatest factor is the largest number that divides another with no remainder. For example the greatest factor of 16 is 8. (For the purpose of this problem we won't say the greatest factor of 16 is 16, because that would be too easy, ha)
+	```ruby
+def greatest_factor_array(arr)
+  arr.map do |num|
+    if prime?(num)
+      num 
+ 	else
+      (num/2).downto(2) do |i| 
+        puts i
+        i if num % i == 0
+      end
+    end
+  end
+end
+
+def prime?(num)
+  return false if num < 0
+  return true if num == 1 || num == 2
+  return false if num % 2 == 0
+  
+  3.upto(Math.sqrt(num)) do |i|
+    return false if num % i == 0
+  end
+  true
+end
+
+def greatest_factor_array(arr)
+  arr.map {|num| num % 2 == 0 ? num/2 : num}
+end
+
+print greatest_factor_array([16, 7, 9, 14]) # => [8, 7, 9, 7]
+puts
+print greatest_factor_array([30, 3, 24, 21, 10]) # => [15, 3, 12, 21, 5]
+puts
+	```
+- misread the prompt, the largest factor only applies to even values.
+- just need to return even values/2, the odd values just return. 
+
+
+
+	```ruby
 
 	```
 
-	
-	
-	```ruby 
+
+
+
+	```ruby
 
 	```
 
-	
-	
-	```ruby 
+
+
+
+	```ruby
 
 	```
 
-	
+
+
+
+	```ruby
+
+	```
+
+
+
+
+	```ruby
+
+	```
+
+
+
+
+	```ruby
+
+	```
+
+
+
+
+	```ruby
+
+	```
+
+
+
+
+	```ruby
+
+	```
+
+

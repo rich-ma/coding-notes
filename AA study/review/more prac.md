@@ -235,12 +235,29 @@ puts
 - just need to return even values/2, the odd values just return. 
 
 
-
+Perfect Square
+Write a method perfect_square? that takes in a number and returns a boolean indicating whether it is a perfect square. A perfect square is a number that results from multiplying a number by itself. For example, 9 is a perfect square because 3  3 = 9, 25 is a perfect square because 5  5 = 25.
 	```ruby
+def perfect_square?(num)
+	Math.sqrt(num) == (Math.sqrt(num)).floor
+end
 
+def perfect_square?(num)
+	return true if num == 1
+	(1..num/2).each {|i| return true if i * i == num}
+	false
+end
+
+
+puts perfect_square?(5)   #=> false
+puts perfect_square?(12)  #=> false
+puts perfect_square?(30)  #=> false
+puts perfect_square?(9)   #=> true
+puts perfect_square?(25)  #=> true
 	```
-
-
+- just use sqrt again? 
+- if not we can go from half down to 1 check from perfect squares along the way. 
+- will have to account for 1 being an edge case
 
 
 	```ruby

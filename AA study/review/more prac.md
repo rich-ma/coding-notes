@@ -259,25 +259,85 @@ puts perfect_square?(25)  #=> true
 - if not we can go from half down to 1 check from perfect squares along the way. 
 - will have to account for 1 being an edge case
 
-
+Triple Sequence
+Write a method triple_sequence that takes in two numbers, start and length. The method should return an array representing a sequence that begins with start and is length elements long. In the sequence, every element should be 3 times the previous element. Assume that the length is at least 1.
 	```ruby
+def triple_sequence(start, length)
+  result = [start]
+  (length - 1).times {result << result[-1] * 3}
+  result
+end
 
+print triple_sequence(2, 4) # => [2, 6, 18, 54]
+puts
+print triple_sequence(4, 5) # => [4, 12, 36, 108, 324]
+puts
 	```
+	- start an array at [start]
+	- iterate length-1 times to make up for starting with the start value
+	- initially did (1..length).map and then multipled by start * index(3) but is more convoluted that way
 
 
 
-
+Summation Sequence
+A number's summation is the sum of all positive numbers less than or equal to the number. For example: the summation of 3 is 6 because 1 + 2 + 3 = 6, the summation of 6 is 21 because 1 + 2 + 3 + 4 + 5 + 6 = 21. Write a method summation_sequence that takes in a two numbers: start and length. The method should return an array containing length total elements. The first number of the sequence should be the start number. At any point, to generate the next element of the sequence we take the summation of the previous element. You can assume that length is not zero.
 	```ruby
-
+def summation_sequence(start, length)
+  result = [start]
+  
+  (length-1).times do
+    result << (1..result[-1]).reduce(:+)
+  end
+  
+  result
+end
 	```
+- used reduce to add the values from 1 to the previous value
+- if it was a more advanced question, we could store the value of every summation in a hash object that way we could easily access previously known values to save time
 
 
 
-
+Fibonacci
+The fibonacci sequence is a sequence of numbers whose first and second elements are 1. To generate further elements of the sequence we take the sum of the previous two elements. For example the first 6 fibonacci numbers are 1, 1, 2, 3, 5, 8. Write a method fibonacci that takes in a number length and returns the fibonacci sequence up to the given length.
 	```ruby
+def fibonacci(length)
+  return [] if length == 0
+  return [1] if length == 1
+  fibb = [1, 1]
+  (length - 2).times {fibb << fibb[-1] + fibb[-2]}
+  
+  fibb
+end
 
+print fibonacci(0) # => []
+puts
+print fibonacci(1) # => [1]
+puts
+print fibonacci(6) # => [1, 1, 2, 3, 5, 8]
+puts
+print fibonacci(8) # => [1, 1, 2, 3, 5, 8, 13, 21]
+puts
+
+def fibonacci_rec(length)
+  return [] if length == 0
+  return [1] if length == 1
+  return [1,1] if length == 2
+  
+  prev_fibb = fibonacci_rec(length - 1)
+  
+  prev_fibb << prev_fibb[-1] + prev_fibb[-2]
+  
+  prev_fibb
+end
 	```
-
+	- iterative solve with cases for 0 and 1 length
+	- iterate length - 2 times since we start with [1,1]
+	could also just do a while arr.length < length
+	
+- added a recursive method, with 3 base cases, depending on the length given.  
+- covers cases where length <=2
+- can also do this dynamically by returning the values at each location and storing them
+- not as relevant in this situation since we are building the actual sequence instead of getting a value of a specific location
 
 
 

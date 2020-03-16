@@ -340,18 +340,54 @@ end
 - not as relevant in this situation since we are building the actual sequence instead of getting a value of a specific location
 
 
-
+Caesar Cipher
+Write a method caesar_cipher that takes in a string and a number. The method should return a new string where every character of the original is shifted num characters in the alphabet.
 	```ruby
+# Feel free to use this variable:
+# alphabet = "abcdefghijklmnopqrstuvwxyz"
 
+def caesar_cipher(str, num)
+  alphabet = "abcdefghijklmnopqrstuvwxyz"
+  (0...str.length).each do |i|
+    index = alphabet.index(str[i])
+    new_index = (index + num) % alphabet.length
+  	str[i] = alphabet[new_index]
+  end
+	
+  str
+end
+
+puts caesar_cipher("apple", 1)    #=> "bqqmf"
+puts caesar_cipher("bootcamp", 2) #=> "dqqvecor"
+puts caesar_cipher("zebra", 4)    #=> "difve"
 	```
+- we use alphabet to retreive the correct index of each letter
+- we iterate over each letter in the str
+- store that index, add it to the shift value, then mod the length of the alphabet for when it cycles back around
+- this does modify the original str
 
 
 
-
+Vowel Cipher
+Write a method vowel_cipher that takes in a string and returns a new string where every vowel becomes the next vowel in the alphabet.
 	```ruby
+def vowel_cipher(string)
+  vowels = 'aeiou'
+  string.split('').map do |ch|
+    if vowels.include?(ch)
+      index = vowels.index(ch)
+      vowels[(index + 1) % vowels.length]
+    else
+      ch
+    end
+  end.join('')
+end
 
+puts vowel_cipher("bootcamp") #=> buutcemp
+puts vowel_cipher("paper cup") #=> pepir cap
 	```
-
+	- take similar approach to alphabet, but this time just vowels
+- tried a method similar to alphabet, but ran into issues with nil conversion somewhere along the time
 
 
 

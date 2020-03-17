@@ -423,4 +423,76 @@ print adjacent_sum([2, 5, 1, 9, 2, 4]) #=> [7, 6, 10, 11, 6], because [2+5, 5+1,
 puts
 	```
 
+Pyramid Sum
+Write a method pyramid_sum that takes in an array of numbers representing the base of a pyramid. The function should return a 2D array representing a complete pyramid with the given base. To construct a level of the pyramid, we take the sum of adjacent elements of the level below.
+```ruby 
+# For example, the base [1, 4, 6] gives us the following pyramid
+#     15
+#   5   10
+# 1   4    6
+
+def pyramid_sum(base)
+  height = base.length
+  pyramid = [base]
+  
+  while pyramid.length < height 
+    prev_arr = pyramid[0]
+    new_arr = Array.new(prev_arr.length - 1, 0)
+    new_arr.each_index {|i| new_arr[i] = prev_arr[i] + prev_arr[i + 1]}
+    pyramid.unshift(new_arr)
+  end
+  
+  pyramid
+end
+
+print pyramid_sum([1, 4, 6]) #=> [[15], [5, 10], [1, 4, 6]]
+puts
+
+print pyramid_sum([3, 7, 2, 11]) #=> [[41], [19, 22], [10, 9, 13], [3, 7, 2, 11]]
+puts
+```
+- pretty clean approach, we create each new level of the pyramid from the size of the previous one - 1
+- using array initialization to use previous layer size-1, and default of 0
+- simply unshift it into the result pyramid array
+
+
+All Else Equal
+Write a method all_else_equal that takes in an array of numbers. The method should return the element of the array that is equal to half of the sum of all elements of the array. If there is no such element, the method should return nil.
+```ruby 
+def all_else_equal(arr)
+	half = arr.reduce(:+)/2.0
+  if arr.index(half)
+    return half
+  end
+  return nil
+end
+
+
+p all_else_equal([2, 4, 3, 10, 1]) #=> 10, because the sum of all elements is 20
+p all_else_equal([6, 3, 5, -9, 1]) #=> 3, because the sum of all elements is 6
+p all_else_equal([1, 2, 3, 4])     #=> nil, because the sum of all elements is 10 and there is no 5 in the array
+```
+
+
+
+
+```ruby 
+
+```
+
+
+
+
+```ruby 
+
+```
+
+
+
+
+```ruby 
+
+```
+
+
 

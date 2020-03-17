@@ -475,6 +475,34 @@ p all_else_equal([1, 2, 3, 4])     #=> nil, because the sum of all elements is 1
 
 
 
+Anagrams
+Write a method anagrams? that takes in two words and returns a boolean indicating whether or not the words are anagrams. Anagrams are words that contain the same characters but not necessarily in the same order. Solve this without using .sort
+```ruby 
+def anagrams?(word1, word2)
+  return false if word1.length != word2.length
+  
+  word1_hash = Hash.new(0)
+  word1.chars.each {|ch| word1_hash[ch] += 1}
+  
+  word2.chars.each do |ch|
+    word1_hash[ch] -= 1
+    return false if word1_hash[ch] < 0
+  end
+  
+  true
+end
+
+puts anagrams?("cat", "act")          #=> true
+puts anagrams?("restful", "fluster")  #=> true
+puts anagrams?("cat", "dog")          #=> false
+puts anagrams?("boot", "bootcamp")    #=> false
+```
+- store the first word in a hash, counting the individual ch
+- going through each ch in the second word, we reduce the count of the hash, and return false if any drop below 0
+- early false case if the lengths are not the same
+
+
+
 
 ```ruby 
 
@@ -483,14 +511,7 @@ p all_else_equal([1, 2, 3, 4])     #=> nil, because the sum of all elements is 1
 
 
 
-```ruby 
-
-```
-
-
-
-
-```ruby 
+```ruby ga
 
 ```
 

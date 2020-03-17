@@ -390,16 +390,37 @@ puts vowel_cipher("paper cup") #=> pepir cap
 - tried a method similar to alphabet, but ran into issues with nil conversion somewhere along the time
 
 
-
+Double Letter Count
+Write a method that takes in a string and returns the number of times that the same letter repeats twice in a row.
 	```ruby
+def double_letter_count(string)
+  count = 0
+  string.chars.each_with_index do |ch, i|
+    count += 1 if ch == string[i + 1]
+  end
+  
+  count
+end
 
+puts double_letter_count("the jeep rolled down the hill") #=> 3
+puts double_letter_count("bootcamp") #=> 1
 	```
 
 
 
-
+Adjacent Sum
+Write a method adjacent_sum that takes in an array of numbers and returns a new array containing the sums of adjacent numbers in the original array. See the examples.
 	```ruby
+def adjacent_sum(arr)
+ (0...arr.length - 1).map do |i|
+   arr[i] + arr[i + 1]
+ end
+end
 
+print adjacent_sum([3, 7, 2, 11]) #=> [10, 9, 13], because [ 3+7, 7+2, 2+11 ]
+puts
+print adjacent_sum([2, 5, 1, 9, 2, 4]) #=> [7, 6, 10, 11, 6], because [2+5, 5+1, 1+9, 9+2, 2+4]
+puts
 	```
 
 

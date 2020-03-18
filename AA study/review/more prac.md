@@ -503,17 +503,57 @@ puts anagrams?("boot", "bootcamp")    #=> false
 
 
 
-
+Consonant Cancel
+Write a method consonant_cancel that takes in a sentence and returns a new sentence where every word begins with it's first vowel.
 ```ruby 
+def consonant_cancel(sentence)
+  sentence.split.map do |word|
+    vowel_index = word.index(/[aeiou]/)
+    word[vowel_index..-1]
+  end.join(' ')
+end
 
+puts consonant_cancel("down the rabbit hole") #=> "own e abbit ole"
+puts consonant_cancel("writing code is challenging") #=> "iting ode is allenging"
 ```
+- split each word
+- use regex to find the first vowel
+- use spread operator to 
 
 
 
+Same Char Collapse
+Write a method same_char_collapse that takes in a string and returns a collapsed version of the string. To collapse the string, we repeatedly delete 2 adjacent characters that are the same until there are no such adjacent characters. If there are multiple pairs that can be collapsed, delete the leftmost pair. For example, we take the following steps to collapse "zzzxaaxy": zzzxaaxy -> zxaaxy -> zxxy -> zy
+```ruby
+def same_char_collapse(str)
+  start = 0
+  i = 0
+  while i < str.length
+    p [str, i]
+    if str[i] == str[i + 1]
+      p ['if',i, i + 1]
+      str = str[0...i] + str[(i + 2)..-1]
+      puts str
+    elsif str[i - 1] == str[i]
+      p ['else', i - 1, i]
+      str = str[0...i - 1] + str[i + 1 .. -1]
+      i -= 1
+    else
+      i += 1
+    end
+  end
+  
+  str
+end
+puts same_char_collapse("zzzxaaxy")   #=> "zy"
+# because zzzxaaxy -> zxaaxy -> zxxy -> zy
 
-```ruby ga
 
+puts same_char_collapse("uqrssrqvtt") #=> "uv"
+# because uqrssrqvtt -> uqrrqvtt -> uqqvtt -> uvtt -> uv
 ```
+- go through each character in the string, check if the string at index and index + 1/-1 are the same, and then 'slicing'
+- for index + index - 1, there is a possibility that i - 1 and i - 2 could be the same, so we drop i by 1 for that situation
 
 
 

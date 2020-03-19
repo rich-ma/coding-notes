@@ -130,3 +130,71 @@ multi_d = [
 
 p multi_d.flatten   # => ["a", "b", "c", "d", "e", "f"]
 ```
+
+## Symbol Notes
+- a data type in ruby similar to Strings.
+- symbols are denoted with ':' a colon before the caracters
+  - don't need to wrap in quotes like a string :symbol, vs 'string'
+
+```ruby
+str = "hello"   # the string 
+sym = :hello    # the symbol
+
+p str.length    # => 5
+p sym.length    # => 5
+
+p str[1]        # => "e"
+p sym[1]        # => "e"
+
+p str == sym    # => false
+# a string is different from a symbol!
+```
+- can do length, access like an array, but is not a string
+
+### immutable symbols
+- symbols cannot be changed, they are immutable, unlike a string
+
+```ruby
+str = "hello"
+sym = :hello
+
+str[0] = "x"
+sym[0] = "x"
+
+p str   # => "xello"
+p sym   # => :hello
+```
+- this is powerful in that we don't need to worry about a symbol being changed, and only make it once, like const in JS
+- behind the scenes, when you create or reference a string, ruby will allocate memory in our machines memory to store the string, even if its a duplicate value.
+- symbols do not need to be recreated since they are immutable so we don't need to track the changes.
+- here is an example of ruby memory storing new String literals in different memory spaces, and symbols in the same
+
+```ruby 
+"hello".object_id   # => 70233443667980
+"hello".object_id   # => 70233443606440
+"hello".object_id   # => 70233443438700
+
+//vs
+
+:hello.object_id    # => 2899228
+:hello.object_id    # => 2899228
+:hello.object_id    # => 2899228
+```
+- if you are not planning on changing the string, a symbol can be used instead.
+
+### symbols as hash keys
+- using symbols in as a key in a hash object is very popular
+```ruby 
+my_bootcamp = { :name=>"App Academy", :color=>"red", :locations=>["NY", "SF", "ONLINE"] }
+p my_bootcamp           # => {:name=>"App Academy", :color=>"red", :locations=>["NY", "SF", "ONLINE"]}
+p my_bootcamp[:color]   #=> "red
+```
+- in ruby we can use some syntactic sugar to save time by removing the rocket(=>) and just moving the colon between the key and value
+
+```ruby 
+my_bootcamp = { name:"App Academy", color:"red", locations:["NY", "SF", "ONLINE"] }
+p my_bootcamp           # => {:name=>"App Academy", :color=>"red", :locations=>["NY", "SF", "ONLINE"]}
+p my_bootcamp[:color]   #=> "red
+```
+- saves us some time, and is only allowed when initializing the symbols in the hash.
+- still need to use the colon when accessing the hash object(hash[:key])

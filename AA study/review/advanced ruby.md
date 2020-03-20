@@ -215,4 +215,40 @@ p repeat("hi") # => "hi"
 p repeat("hi", 3) # => "hihihi"
 ```
 - in this, the number of repeats is optional, with a default of 1.
-- 
+  
+
+### option hash
+- if your method accepts a hash as an argument, you can omit the braces
+```ruby
+def method(hash)
+    p hash  # {"location"=>"SF", "color"=>"red", "size"=>100}
+end
+
+method({"location"=>"SF", "color"=>"red", "size"=>100})
+
+# this also works:
+method("location"=>"SF", "color"=>"red", "size"=>100)
+```
+- helps with readability
+```ruby
+def modify_string(str, options)
+    str.upcase! if options["upper"]
+    p str * options["repeats"]
+end
+
+# less readable
+modify_string("bye", {"upper"=>true, "repeats"=>3}) # => "BYEBYEBYE"
+
+# more readable
+modify_string("bye", "upper"=>true, "repeats"=>3)   # => "BYEBYEBYE"
+```
+-combine both together
+```ruby 
+def modify_string(str, options={"upper"=>false, "repeats"=>1})
+    str.upcase! if options["upper"]
+    p str * options["repeats"]
+end
+
+modify_string("bye")   # => "bye"
+modify_string("bye", "upper"=>true, "repeats"=>3)   # => "BYEBYEBYE"
+```

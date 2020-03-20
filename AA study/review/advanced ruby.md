@@ -198,3 +198,21 @@ p my_bootcamp[:color]   #=> "red
 ```
 - saves us some time, and is only allowed when initializing the symbols in the hash.
 - still need to use the colon when accessing the hash object(hash[:key])
+
+## Default Arugments and Option Hashes
+
+### Default Arguments
+- like other languages, you can declare a default value for parameters
+
+```ruby 
+# Let's make num an optional parameter.
+# By default, num will have the value of 1
+def repeat(message, num=1)
+    message * num
+end
+
+p repeat("hi") # => "hi"
+p repeat("hi", 3) # => "hihihi"
+```
+- in this, the number of repeats is optional, with a default of 1.
+- 

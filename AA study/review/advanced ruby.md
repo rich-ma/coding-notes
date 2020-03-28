@@ -252,3 +252,9 @@ end
 modify_string("bye")   # => "bye"
 modify_string("bye", "upper"=>true, "repeats"=>3)   # => "BYEBYEBYE"
 ```
+
+## Splat Operator(*)
+
+### Using splat to accept additional arguments
+- ruby methods are strict with how many arguments we pass it
+- if you don't 

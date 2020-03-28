@@ -257,4 +257,84 @@ modify_string("bye", "upper"=>true, "repeats"=>3)   # => "BYEBYEBYE"
 
 ### Using splat to accept additional arguments
 - ruby methods are strict with how many arguments we pass it
-- if you don't 
+- if you don't give the exact arguments(without defaults), you will get an argumentError
+
+```ruby
+def method(arg_1, arg_2)
+    p arg_1
+    p arg_2
+end
+
+method("a", "b", "c", "d", "e") # ArgumentError: wrong number of arguments (given 5, expected 2)
+```
+
+- to allow a method to have the ability to accept at least 2 arguments and potentially more, we use a splat parameter
+- this will allow the rest of the arguments to be collected into an array.
+- 
+```ruby
+def method(arg_1, arg_2, *other_args)
+    p arg_1         # "a"
+    p arg_2         # "b"
+    p other_args    # ["c", "d", "e"]
+end
+
+method("a", "b", "c", "d", "e") 
+```
+
+- this is an optional argument that can be empty
+
+```ruby
+def method(arg_1, arg_2, *other_args)
+    p arg_1         # "a"
+    p arg_2         # "b"
+    p other_args    # []
+end
+
+method("a", "b") 
+```
+- here shows that *other_args is nothing so nothing gets printed.
+- splat should always be put at the end of a parameter list to avoid confusion
+
+### Using splat to decompose an array
+- splat can be used to decompose or unpack elements in an array as well
+- if we want a method to split up an array for us, splat is a good way
+
+```ruby
+def greet(first_name, last_name)
+    p "Hey " + first_name + ", your last name is " + last_name
+end
+
+names = ["grace", "hopper"]
+greet(names)    # ArgumentError: wrong number of arguments (given 1, expected 2)
+```
+- this code doesnt work because we passed in an array instead of two arguments like it was expecting
+- changing the argument to a splat array will fix this
+```ruby
+def greet(first_name, last_name)
+    p "Hey " + first_name + ", your last name is " + last_name
+end
+
+names = ["Grace", "Hopper"]
+greet(*names)    # => "Hey Grace, your last name is Hopper"
+```
+
+- the splat essentially removes the [] from the array, leaving just the elements like a comma separated list
+- allows for more creative uses
+
+```ruby
+arr_1 = ["a", "b"]
+arr_2 = ["d", "e"]
+arr_3 = [ *arr_1, "c", *arr_2 ]
+p arr_3 # => ["a", "b", "c", "d", "e"]
+```
+- here we use splat to decompose two arrays to join into a different array
+
+### Using splat to decompose a hash
+- can use double splat (**) to unpack a hash's key value pairs
+- will only work when the keys of the hash are symbols
+
+```ruby
+old_hash = { a: 1, b: 2 }
+new_hash = { **old_hash, c: 3 }
+p new_hash # => {:a=>1, :b=>2, :c=>3}
+```

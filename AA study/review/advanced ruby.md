@@ -338,3 +338,5 @@ old_hash = { a: 1, b: 2 }
 new_hash = { **old_hash, c: 3 }
 p new_hash # => {:a=>1, :b=>2, :c=>3}
 ```
+
+## Inject

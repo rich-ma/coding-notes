@@ -340,3 +340,38 @@ p new_hash # => {:a=>1, :b=>2, :c=>3}
 ```
 
 ## Inject
+- Inject is a very versatile method for problem solving
+- it allows us to iterate through an array and pass in a block
+- it is the same as reduce from other languages
+
+
+### Inject with only a block
+- most straightforward way to use inject is to call it on an array and pass in a block, like a regular enumerable.
+- the block accepts two params:
+  - accumulator
+  - current element
+- block returns what new accumulator will be after a single iteartion
+```ruby
+[11, 7, 2, 4].inject { |acc, el| acc + el }
+```
+- by default, the accumulator sets as the first element in the array(11)
+- because of this, the first element it looks at is actually 7
+- once done, the final accumulator will be returned, 24
+
+- we can use this to our advantage, and do interesting things, such as finding the lowest or highest value in an array
+```ruby
+p [11, 7, 2, 4].inject do |acc, el|
+    if el < acc
+        el
+    else
+        acc
+    end
+end # => 2
+```
+- here the accumulator is replaced if the element is less than the accumulator, essentially finding the lowest
+- accumulator is reasigned to wahtever is the result in each iteration
+
+
+### inject with a default accumulator
+
+- 

@@ -374,4 +374,46 @@ end # => 2
 
 ### inject with a default accumulator
 
-- 
+- inject also takes a starting accumulator as an argument
+
+```ruby
+# FIRST ITERATION:
+# acc = 100
+# el = 11
+# new_acc = 111
+[11, 7, 2, 4].inject(100) { |acc, el| acc + el }
+```
+
+```ruby
+# SECOND ITERATION
+# acc = 111
+# el = 7
+# new_acc = 118
+[11, 7, 2, 4].inject(100) { |acc, el| acc + el }
+```
+```ruby
+# THIRD ITERATION
+# acc = 118
+# el = 2
+# new_acc = 120
+[11, 7, 2, 4].inject(100) { |acc, el| acc + el }
+```
+```ruby
+# FOURTH ITERATION
+# acc = 120
+# el = 4
+# new_acc = 124
+p [11, 7, 2, 4].inject(100) { |acc, el| acc + el } # => 124
+```
+
+- this gives us more flexibility 
+
+```ruby
+[11, 7, 2, 4].inject(0) do |acc, el|
+    if el.even?
+        acc + el
+    else
+        acc
+    end
+end # => 6
+```

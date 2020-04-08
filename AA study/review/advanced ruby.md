@@ -406,7 +406,7 @@ end # => 2
 p [11, 7, 2, 4].inject(100) { |acc, el| acc + el } # => 124
 ```
 
-- this gives us more flexibility 
+- this gives us more flexibility in our usage of inject
 
 ```ruby
 [11, 7, 2, 4].inject(0) do |acc, el|

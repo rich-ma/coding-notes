@@ -5,7 +5,6 @@
 
 def coprime?(num1, num2)
 	divisors = []
-
 	2.upto(num1/2) do |i|
 		if num1 % i == 0
 			divisors << i
@@ -13,7 +12,6 @@ def coprime?(num1, num2)
 	end
 
 	divisors.any? {|i| return false if num2 % i == 0}
-
 	true
 end
 

@@ -13,4 +13,4 @@
 - 2, 5, 2, 6, 8 - our first pass is complete
 
 - in the above example, the 8 is bubbled up to the end of the array, as well as several of the other larger values in the array
-- 
+

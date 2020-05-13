@@ -14,3 +14,37 @@
 
 - in the above example, the 8 is bubbled up to the end of the array, as well as several of the other larger values in the array
 
+## Scope and Reference
+
+### methods and local scope
+- lexical scope: how a variable name evaluates in nested code
+
+``` ruby 
+def say_hello
+    message = "hello"
+    p message
+end
+
+say_hello
+```
+- in this code, the variable 'message' only exists within the scope of the method say_hello
+- we cannot access it outside of the method
+``` ruby 
+def say_hello
+    message = "hello"
+end
+
+say_hello
+p message   # NameError: undefined local variable
+```
+- can't reference a variable that was not defined or accessible in that scope.
+
+```ruby
+message = "hi"
+
+def say_hello
+    p message   # NameError: undefined local variable
+end
+
+say_hello
+```

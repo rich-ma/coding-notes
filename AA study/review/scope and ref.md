@@ -138,3 +138,20 @@ end
 
 p drink
 ```
+
+### Variable lecture notes
+- storing information stores it in memory.  When you have a variable and assign it a value, it points to a location in memory that stores its value
+- variable name points to a location in memory
+- with a second variable that has the same content as the first variable, how does that work?
+	- word1 = boot, word2 = boot.
+	- both are actually pointing at unique locations in memory
+	- we can check the object_id of both variables and see that both are different
+	- if we modify the first one, it wont change the second
+- in a different situation where we do word21 = 'cat', word2 = word1
+  - in this situation, both are referencing the same point in memory
+  - if we modify one, it will modify the other
+  - can be useful, and also dangerous
+- upcase! will mutate the string at the point of memory in place, will not make a new one
+- mutations will modify in place, but reassignment will point to a new place in memory
+- 
+- 

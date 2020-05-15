@@ -154,4 +154,19 @@ p drink
 - upcase! will mutate the string at the point of memory in place, will not make a new one
 - mutations will modify in place, but reassignment will point to a new place in memory
 - 
-- 
+
+### variable vid 2
+- creating arrays with default value can lead to issues
+- arr1 = Array.new(3)
+  - creates an array lenght 3 with nil as values
+- arr = Array.new(10, '?')
+  - array lenght 10, with all '?' as the value
+- grid = Array.new(3, Array.new(3))
+  - if you reassign one of the values its fine, but if we mutate the value, it will mutate all of them
+  - variable reference mistake
+  - the inner array evaluates to a single array so each array in memory is referencing the same space in memory
+- ruby fixes this with a different way to intialize the array with a block
+- grid = Array.new(3) { Array.new(3) }
+  - a block executes each time, creating a new array with a new point in memory.
+  - now modifying one subarray will not affect the rest. 
+  - 

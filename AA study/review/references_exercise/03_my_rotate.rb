@@ -11,7 +11,9 @@
 
 
 def my_rotate!(array, amt)
-
+	rotations = amt % array.length
+	rotations.times {array.push(array.shift)}
+	array
 end
 
 

@@ -162,4 +162,61 @@ prime?(11)  # => true (PASS)
 - now all of our tests so far are passing, go onto third iteration for more tests or edge cases
 
 ### Iteration 3, write a new test
+- now we need more coverage for edge cases, -, negatives, 1, etc.
+
+```ruby
+# TDD Iteration 3: return false if the number is less than 2, since 2 is the smallest prime
+
+prime?(1)   # => false
+prime?(0)   # => false
+prime?(-42) # => false
+```
+
+### iteration 3, run tests check for failures
+```ruby
+
+# desired output
+prime?(1)   # => false
+prime?(0)   # => false
+prime?(-42) # => false
+
+# current output
+prime?(1)   # => true (FAIL)
+prime?(0)   # => true (FAIL)
+prime?(-42) # => true (FAIL)
+```
+
+### iteration 3, make changes to code
+```ruby
+def prime?(num)
+  return false if num < 2
+
+  (2...num).each do |i|
+    return false if num % i == 0
+  end
+
+  true
+end
+```
+
+### iter 3, run code and check for pass
+```ruby
+# desired output
+prime?(1)   # => false
+prime?(0)   # => false
+prime?(-42) # => false
+
+# current output
+prime?(1)   # => false
+prime?(0)   # => false
+prime?(-42) # => false
+```
+- need to make sure you're running all the tests, not just the ones you just wrote to make sure you didn't break anything
+
+
+## When to use TDD
+- Popular development strategy in the professional world
+- methodical process that can be tedious
+- don't need to follow it throughout your career, but keep it in mind
 - 
+

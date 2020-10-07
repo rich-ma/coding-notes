@@ -6,3 +6,10 @@ def hipsterfy(string)
 	end
 	string.reverse()
 end
+
+def vowel_counts(str)
+	hash = Hash.new(0)
+	vowel_arr = str.downcase.scan(/[aeiou]/)
+	vowel_arr.each { |ch| hash[ch] += 1 }
+	hash
+end

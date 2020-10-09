@@ -8,5 +8,7 @@ def partition(arr, n)
 end
 
 def merge(hash_1, hash_2)
-
+	merged_hash = hash_1.clone
+	hash_2.each { |key, val| merged_hash[key] = val }
+	merged_hash
 end

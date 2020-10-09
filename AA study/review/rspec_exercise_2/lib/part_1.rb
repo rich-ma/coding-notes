@@ -33,3 +33,11 @@ def censorfy(word)
 		end
 	end.join('')
 end
+
+def power_of_two?(n)
+	# return true if n == 1
+	# return false if n % 2 == 1
+	(Math.log(n) / Math.log(2)).to_i == (Math.log(n) / Math.log(2))
+end
+
+puts power_of_two?(1)

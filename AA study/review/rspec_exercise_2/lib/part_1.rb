@@ -39,5 +39,3 @@ def power_of_two?(n)
 	# return false if n % 2 == 1
 	(Math.log(n) / Math.log(2)).to_i == (Math.log(n) / Math.log(2))
 end
-
-puts power_of_two?(1)

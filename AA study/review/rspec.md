@@ -220,3 +220,4 @@ prime?(-42) # => false
 - don't need to follow it throughout your career, but keep it in mind
 - 
 
+# RSpec

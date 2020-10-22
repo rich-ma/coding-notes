@@ -133,3 +133,5 @@ end
 
 -find more about pry here: https://github.com/pry/pry/blob/master/README.md
 
+# Pry lecture notes
+- 

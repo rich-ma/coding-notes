@@ -134,4 +134,54 @@ end
 -find more about pry here: https://github.com/pry/pry/blob/master/README.md
 
 # Pry lecture notes
+- use ls to find methods for specific objects or types
 - 
+
+# Bye Bug
+
+## using byebug
+- debugging tool, pause execution, go through code 1 line at a time.
+
+
+## cheatsheet
+- in debugger mode
+	- l <start line>-<end line> - list the line numbers in the specified range
+		- example: l 3-20
+	- step or s, steps into the method call on the current line if possible
+	- next or n, move to the next line of executed code
+	- break <line num> or b <line num> - place a breakpoint at the specified line number, this will pause execution again
+	- continue or c - resume normal execution of the code until a breakpoint
+	- display <variable> - automatically show the current value of a variable
+
+## running byebug
+- before you can use byebug you need to do a few things
+	- require 'byebug' to gain access to the gem
+	- add a debugger line to pause the code to enter debugging mode
+
+```ruby
+# code.rb
+1:  require "byebug"   #
+2:   
+3:  def is_prime?(number)
+4:    (2...number).each do |factor|
+5:      return false if number % factor == 0
+6:    end
+7:
+8:    number > 1
+9:  end
+10:
+11: def first_n_primes(num_primes)
+12:   primes = []
+13:   num = 2
+14:   debugger        #
+15:   while primes.length < num_primes
+16:     primes << num if is_prime?(num)
+17:     num += 1
+18:   end
+19:   primes
+20: end
+21:
+22: p first_n_primes(11)
+```
+- 
+

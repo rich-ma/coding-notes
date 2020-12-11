@@ -10,7 +10,7 @@ def prime?(num)
 
 		(2...num).each do |factor|
         if num % factor == 0
-            return falsega
+            return false
         end
 		end
 		true

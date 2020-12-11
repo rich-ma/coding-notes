@@ -10,7 +10,6 @@ require "byebug"
 def titleize(title)
 	little_words = [ "and", "the", "over", "a", "on", "of" ]
   words = title.split(" ")
-	
 	titleized_words = words.map.with_index do |word, i|
     if i == 0 || !little_words.include?(word)
       word.capitalize
@@ -18,11 +17,9 @@ def titleize(title)
       word.downcase
     end
   end
-
   titleized_words.join(" ")
 end
 
 # map with index is supposed to be |word, i|
 # had to move little_words into the titleized method otherwise only 1 word titles would function
-
 

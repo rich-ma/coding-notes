@@ -5,14 +5,17 @@
 
 require "byebug"
 
-def prime(num)
+def prime?(num)
     return false if num < 2
 
-    (2...num).each do |factor|
+		(2...num).each do |factor|
         if num % factor == 0
-            return false
-        else
-            return true
+            return falsega
         end
-    end
+		end
+		true
 end
+
+#method name is wrong
+# method is returning true if the first factor(2) is not a factor of num, so essentially all odd numbers will be true
+# need to not return true until the end of the .each iterator

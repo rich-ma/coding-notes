@@ -183,5 +183,184 @@ end
 21:
 22: p first_n_primes(11)
 ```
-- 
 
+- use ruby code.rb which will run the file until it hits the debugger
+
+```ruby
+ 10:
+   11: def first_n_primes(num_primes)
+   12:   primes = []
+   13:   num = 2
+   14:   debugger
+=> 15:   while primes.length < num_primes
+   16:     primes << num if is_prime?(num)
+   17:     num += 1
+   18:   end
+   19:   primes
+(byebug)
+```
+- in here, we can check the value of different variables by referencing the names
+
+```ruby
+(byebug) primes
+[]
+(byebug) num
+```
+
+## display
+- using 'display' allows us to automatically track variables
+```ruby
+   10:
+   11: def first_n_primes(num_primes)
+   12:   primes = []
+   13:   num = 2
+   14:   debugger
+=> 15:   while primes.length < num_primes
+   16:     primes << num if is_prime?(num)
+   17:     num += 1
+   18:   end
+   19:   primes
+(byebug) display primes
+1: primes = []
+(byebug) display num
+2: num = 2
+```
+- at this point we are at line 15, and prime = [], and num = 2
+
+## next
+- 'next' or 'n' allows us to execute the next subsequent code
+- doesn't necessarily mean the next line(10 to 11), but follows the natural flow of the code
+- if we are in a loop, it will follow the natural procedure(conditional branches, loops, etc)
+- **IT WILL NOT STEP INTO ANOTHER METHOD CALL**. 
+
+```ruby
+(byebug) next
+1: primes = []
+2: num = 2
+
+# [15, 18] in /Users/appacademy/Desktop/lecture/code.rb
+   15:   while primes.length < num_primes
+=> 16:     primes << num if is_prime?(num)
+   17:     num += 1
+   18:   end
+
+```
+- here, when we use next, it enters the while loop and checks the conditional if
+- using next again will go to line 17 and add 1 to num
+
+```ruby
+(byebug) next
+1: primes = [2]
+2: num = 2
+
+# [15, 18] in /Users/appacademy/Desktop/lecture/code.rb
+   15:   while primes.length < num_primes
+   16:     primes << num if is_prime?(num)
+=> 17:     num += 1
+	 18:   end
+```
+- 2 gets pushed into prime
+- 1 gets added to num
+- using 'n' again, goes back to line 15 to check the condition of our loop
+```ruby
+(byebug) next
+1: primes = [2]
+2: num = 3
+
+# [15, 18] in /Users/appacademy/Desktop/lecture/code.rb
+   15:   while primes.length < num_primes
+=> 16:     primes << num if is_prime?(num)
+   17:     num += 1
+	 18:   end
+```
+- the while conditional is still true, so we go back to line 16
+- 3 is prime, so it gets pushed into primes again
+  
+```ruby
+(byebug) next
+1: primes = [2, 3]
+2: num = 3
+
+# [15, 18] in /Users/appacademy/Desktop/lecture/code.rb
+   15:   while primes.length < num_primes
+   16:     primes << num if is_prime?(num)
+=> 17:     num += 1
+	 18:   end
+```
+
+```ruby
+(byebug) next
+1: primes = [2, 3]
+2: num = 4
+
+# [15, 18] in /Users/appacademy/Desktop/lecture/code.rb
+   15:   while primes.length < num_primes
+=> 16:     primes << num if is_prime?(num)
+   17:     num += 1
+	 18:   end
+```
+- continue this process until there are 11 primes in the array
+
+## step
+- since we are using next, we never see the code at line 16(if statement, is_prime?(num)) actually evaluate
+- to do this we have to use step, which will 'step' into the method call
+
+```ruby
+(byebug) step
+1: primes = (undefined)
+2: num = (undefined)
+
+# [1, 10] in /Users/appacademy/Desktop/lecture/code.rb
+    1: require "byebug"
+    2:
+    3: def is_prime?(number)
+=>  4:   (2...number).each do |factor|
+    5:     return false if number % factor == 0
+    6:   end
+    7:
+    8:   number > 1
+    9: end
+   10:
+(byebug) display number
+3: number = 4
+(byebug) display factor
+4: factor = (undefined)
+```
+- now that we called step, the debugger steps into the proper method call 
+- since we stepped into this new method, our previously tracked variables(prime, num) are no longer in scope and are undefined
+- we can now track other variables instead, like number, and factor
+- we can use 'next'/'n' here to walk through the code as usual to see if its working properly.
+
+
+## break and continue
+- If you are done with a specific part of the code and want to check another section you can use 'break <line num>' to create a new break point to stop(like putting debugger)
+- this allows us to not 'n' through all the code
+- using 'continue' will let the code run as normal until/if it encounters a new breakpoint
+```ruby
+(byebug) break 19
+# Created breakpoint 1 at /Users/appacademy/Desktop/lecture/code.rb:19
+(byebug) continue
+# Stopped by breakpoint 1 at /Users/appacademy/Desktop/lecture/code.rb:19
+1: primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+2: num = 32
+3: number = (undefined)
+4: factor = (undefined)
+
+# [13, 22] in /Users/appacademy/Desktop/lecture/code.rb
+   13:   num = 2
+   14:   debugger
+   15:   while primes.length < num_primes
+   16:     primes << num if is_prime?(num)
+   17:     num += 1
+   18:   end
+=> 19:   primes
+   20: end
+   21:
+   22: p first_n_primes(11)
+
+```
+- here, we put a breakpoint for after the while loop has evaluated and we return prime.  This lets us check if the method is returning the proper 
+
+## summary
+- make sure you are tracking how variables are changing overtime, and what logic is being evaluated.
+- code will only evaluate to what you coded it to do, not what you want it to do

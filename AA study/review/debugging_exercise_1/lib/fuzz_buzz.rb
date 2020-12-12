@@ -8,11 +8,14 @@ require "byebug"
 def fuzz_buzz(num)
     numbers = []
 
-    (1..num).each do |i|
-        if i % 3 != 0 || i % 5 != 0
+		(1..num).each do |i|
+			# debugger
+        if i % 3 != 0 && i % 5 != 0
             numbers << i
         end
     end
 
     numbers
 end
+
+# the conditional on the if statements needs to be an && else only multiples of both wouldn't get chosen

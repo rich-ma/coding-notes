@@ -23,3 +23,27 @@ def is_prime?(n)
 
 	true
 end
+
+def unique_chars?(str)
+ ch_hash = Hash.new(0)
+ str.chars.each do |ch|
+	ch_hash[ch.downcase] += 1
+	 return false if ch_hash[ch.downcase] > 1
+ end
+
+ true
+end
+
+def dupe_indices(arr)
+	result = {}
+
+	arr.each_with_index do |el, i|
+		if !result[el]
+			result[el] = [i]
+		else
+			result[el] << i
+		end
+	end
+
+	result.select {|k, v| v.length > 1}
+end

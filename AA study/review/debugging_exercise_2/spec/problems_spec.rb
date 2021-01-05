@@ -34,44 +34,44 @@ require "problems"
 #     end
 # end
 
-describe "dupe_indices" do
-    it "should accept an array as an arg" do
-        expect { dupe_indices(["a", "b", "c", "c", "b"]) }.to_not raise_error
-    end
-
-    it "should return an hash where keys are the elements that were repeated in the array and values are the indices where that element appears" do
-        expect(dupe_indices(["a", "b", "c", "c", "b"])).to eq({"b"=>[1,4], "c"=>[2,3]})
-        expect(dupe_indices(["a", "a", "c", "c", "b", "c"])).to eq({"a"=>[0,1], "c"=>[2,3,5]})
-        expect(dupe_indices(["a", "b", "c"])).to eq({})
-    end
-end
-
-# describe "ana_array" do
-#     it "should accept two arrays as args" do
-#         expect { ana_array(["i","c","e","m","a","n"], ["c","i","n","e","m","a"]) }.to_not raise_error
+# describe "dupe_indices" do
+#     it "should accept an array as an arg" do
+#         expect { dupe_indices(["a", "b", "c", "c", "b"]) }.to_not raise_error
 #     end
 
-#     context "when the arrays contain the same elements, in any order" do
-#         it "should return true" do
-#             expect(ana_array(["i","c","e","m","a","n"], ["c","i","n","e","m","a"])).to eq(true)
-#             expect(ana_array(["cat", "dog", "cat"], ["dog", "cat", "cat"])).to eq(true)
-#         end
-#     end
-
-#     context "when the arrays do not contain the same elements" do
-#         it "should return false" do
-#             expect(ana_array(["cat", "dog", "cat"], ["dog", "cat", "mouse"])).to eq(false)
-#             expect(ana_array(["cat"], ["cat", "dog"])).to eq(false)
-#             expect(ana_array(["cat", "dog"], ["cat"])).to eq(false)
-#         end
-#     end
-
-#     it "should not use Array#sort" do
-#         arr_1 = ["i","c","e","m","a","n"]
-#         arr_2 = ["c","i","n","e","m","a"]
-
-#         expect(arr_1).to_not receive(:sort)
-#         expect(arr_2).to_not receive(:sort)
-#         ana_array(arr_1, arr_2)
+#     it "should return an hash where keys are the elements that were repeated in the array and values are the indices where that element appears" do
+#         expect(dupe_indices(["a", "b", "c", "c", "b"])).to eq({"b"=>[1,4], "c"=>[2,3]})
+#         expect(dupe_indices(["a", "a", "c", "c", "b", "c"])).to eq({"a"=>[0,1], "c"=>[2,3,5]})
+#         expect(dupe_indices(["a", "b", "c"])).to eq({})
 #     end
 # end
+
+describe "ana_array" do
+    it "should accept two arrays as args" do
+        expect { ana_array(["i","c","e","m","a","n"], ["c","i","n","e","m","a"]) }.to_not raise_error
+    end
+
+    context "when the arrays contain the same elements, in any order" do
+        it "should return true" do
+            expect(ana_array(["i","c","e","m","a","n"], ["c","i","n","e","m","a"])).to eq(true)
+            expect(ana_array(["cat", "dog", "cat"], ["dog", "cat", "cat"])).to eq(true)
+        end
+    end
+
+    context "when the arrays do not contain the same elements" do
+        it "should return false" do
+            expect(ana_array(["cat", "dog", "cat"], ["dog", "cat", "mouse"])).to eq(false)
+            expect(ana_array(["cat"], ["cat", "dog"])).to eq(false)
+            expect(ana_array(["cat", "dog"], ["cat"])).to eq(false)
+        end
+    end
+
+    it "should not use Array#sort" do
+        arr_1 = ["i","c","e","m","a","n"]
+        arr_2 = ["c","i","n","e","m","a"]
+
+        expect(arr_1).to_not receive(:sort)
+        expect(arr_2).to_not receive(:sort)
+        ana_array(arr_1, arr_2)
+    end
+end

@@ -47,3 +47,23 @@ def dupe_indices(arr)
 
 	result.select {|k, v| v.length > 1}
 end
+
+def ana_array(arr1, arr2)
+	return false if arr1.length != arr2.length
+
+	arr1_hash = {}
+	arr1.each do |el|
+		arr1_hash[el] ? arr1_hash[el] += 1 : arr1_hash[el] = 1
+	end
+
+	arr2.each do |el|
+		if arr1_hash[el]
+			arr1_hash[el] -= 1
+			return false if arr1_hash[el] < 0
+		else
+			return false
+		end
+	end
+
+	true
+end

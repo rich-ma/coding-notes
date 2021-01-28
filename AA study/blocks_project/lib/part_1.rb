@@ -7,8 +7,12 @@ def reject_puppies(arr)
 end
 
 def count_positive_subarrays(arr)
-	arr.count{|el| el.inject(0){|sum,i| sum + i} > 0}
+	arr.count{|el| el.sum > 0}
 end
+
+# def count_positive_subarrays(arr)
+# 	arr.count{|el| el.inject(0){|sum,i| sum + i} > 0}
+# end
 
 def aba_translate(str)
 	vowels = 'aeiou'

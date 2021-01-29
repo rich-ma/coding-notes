@@ -56,53 +56,53 @@ describe "PART 2" do
     end
   end
 
-  # describe "any_passing_students?" do
-  #   it "should accept an array of student hashes as an arg" do
-  #     students = [
-  #       { name: "Alvin", grades: [70, 50, 75] },
-  #       { name: "Warlin", grades: [80, 99, 95] },
-  #       { name: "Vlad", grades: [100] },
-  #     ]
+  describe "any_passing_students?" do
+    it "should accept an array of student hashes as an arg" do
+      students = [
+        { name: "Alvin", grades: [70, 50, 75] },
+        { name: "Warlin", grades: [80, 99, 95] },
+        { name: "Vlad", grades: [100] },
+      ]
 
-  #     expect { any_passing_students?(students) }.to_not raise_error
-  #   end
+      expect { any_passing_students?(students) }.to_not raise_error
+    end
 
-  #   context "when at least one student has an average grade of 75 or higher" do
-  #     it "should return true" do
-  #       students_1 = [
-  #         { name: "Alvin", grades: [70, 50, 75] },
-  #         { name: "Warlin", grades: [80, 99, 95] },
-  #         { name: "Vlad", grades: [100] },
-  #       ]
-  #       expect(any_passing_students?(students_1)).to eq(true)
+    context "when at least one student has an average grade of 75 or higher" do
+      it "should return true" do
+        students_1 = [
+          { name: "Alvin", grades: [70, 50, 75] },
+          { name: "Warlin", grades: [80, 99, 95] },
+          { name: "Vlad", grades: [100] },
+        ]
+        expect(any_passing_students?(students_1)).to eq(true)
 
-  #       students_2 = [
-  #         { name: "Alice", grades: [94, 96] },
-  #         { name: "Bob", grades: [50, 60] }
-  #       ]
-  #       expect(any_passing_students?(students_2)).to eq(true)        
-  #     end
-  #   end
+        students_2 = [
+          { name: "Alice", grades: [94, 96] },
+          { name: "Bob", grades: [50, 60] }
+        ]
+        expect(any_passing_students?(students_2)).to eq(true)        
+      end
+    end
 
-  #   context "when no student has an average grade of 75 or higher" do
-  #     it "should return false" do
-  #       students = [
-  #         { name: "Alice", grades: [60, 68] },
-  #         { name: "Bob", grades: [20, 100] }
-  #       ]
+    context "when no student has an average grade of 75 or higher" do
+      it "should return false" do
+        students = [
+          { name: "Alice", grades: [60, 68] },
+          { name: "Bob", grades: [20, 100] }
+        ]
 
-  #       expect(any_passing_students?(students)).to eq(false)
-  #     end
-  #   end
+        expect(any_passing_students?(students)).to eq(false)
+      end
+    end
 
-  #   it "should use Array#any?" do
-  #     students = [
-  #       { name: "Alice", grades: [60, 68] },
-  #       { name: "Bob", grades: [20, 100] }
-  #     ]
+    it "should use Array#any?" do
+      students = [
+        { name: "Alice", grades: [60, 68] },
+        { name: "Bob", grades: [20, 100] }
+      ]
 
-  #     expect(students).to receive(:any?).at_least(:once)
-  #     any_passing_students?(students)
-  #   end
-  # end
+      expect(students).to receive(:any?).at_least(:once)
+      any_passing_students?(students)
+    end
+  end
 end

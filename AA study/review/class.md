@@ -269,3 +269,84 @@ Car.upgrade_to_flying_cars
 - an @instance_variable will be a distinct variable in each instance of a class; changing the variable will only effect that one instance
 - a @@class_variable will be shared among all instances of a class; changing the variable will effect all instances because all instances of the class
 - a CLASS_CONSTANT will be shared among all instances of a class, but cannot be changed
+
+# Instance Methods vs Class Methods
+ ## Instance MEthods
+ - instance methods are methods that affect individual instances of a class, i.e. cat.set_name = ...., or my_dog.speak below
+```ruby
+class Dog
+  def initialize(name, bark)
+    @name = name
+    @bark = bark
+  end
+
+  def speak
+    @name + " says " + @bark
+  end
+end
+
+my_dog = Dog.new("Fido", "woof")
+my_dog.speak          # "Fido says woof"
+
+other_dog = Dog.new("Doge", "much bork")
+other_dog.speak       # "Doge says much bork"
+```
+- speak is an instance method because we can only call it on a Dog instance.
+- Dog#speak indicates that speak is an instance method of Dog.
+
+
+## Class Methods
+- class methods are called directly onto the Class, like we saw with Car.upgrade_to_flying_cars
+```ruby
+class Dog
+  def initialize(name, bark)
+    @name = name
+    @bark = bark
+  end
+
+  def self.growl
+    "Grrrrr"
+  end
+end
+
+Dog.growl   # Grrrrr
+```
+- the **self.** indicates that a method is a class method, the self being the Dog class itself.
+- ::indicates a class method, i.e. Dog::growl
+
+```ruby
+class Dog
+  def initialize(name, bark)
+    @name = name
+    @bark = bark
+  end
+
+  def self.whos_louder(dog_1, dog_2)
+    if dog_1.bark.length > dog_2.bark.length
+      return dog_1.name
+    elsif dog_1.bark.length < dog_2.bark.length
+      return dog_2.name
+    else
+      return nil
+    end
+  end
+
+  def name
+    @name
+  end
+
+  def bark
+    @bark
+  end
+end
+
+d1 = Dog.new("Fido", "woof")
+d2 = Dog.new("Doge", "much bork")
+p Dog.whos_louder(d1, d2) # "Doge"
+```
+- in this example we have the class method Dog::whos_louder(dog_1, dog_2)
+- we choose a class vs an instance method because it doesn't pertain to a single isntance, but compares two of the same class.
+
+## wrapping up
+- Class#method_name means method_name is an instance method
+- Class::method_name means method_name is a class method

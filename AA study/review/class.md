@@ -143,3 +143,129 @@ p cat_1 #<Cat:0x007f8511a6f340 @age=42, @color="brown", @name="Sennacy">
 ```
 - the def age=(num), allows us to assign the age of the cat instance. 
 
+# Instance vs Class Variables
+
+## Instance Variables
+- instance variables are denoted with **@** and are usually assigned within #initialize
+
+```ruby
+class Car
+  def initialize(color)
+    @color = color
+  end
+
+  def color
+    @color
+  end
+end
+
+car_1 = Car.new("red")
+p car_1.color     # "red"
+
+car_2 = Car.new("black")
+p car_2.color     # "black"
+```
+- class variables are variables that are shared between all instances of a class instead of ones unique to an instance like name, color, age for cat.
+
+
+## Class Variables
+- if you want all instances of a class to have the same attribute we use a class variable(i.e. cars having 4 wheels)
+
+```ruby
+class Car
+  @@num_wheels = 4
+
+  def initialize(color)
+    @color = color
+  end
+
+  # getter for @color instance variable
+  def color
+    @color
+  end
+
+  # getter for @@num_wheels class variable
+  def num_wheels
+    @@num_wheels
+  end
+end
+
+car_1 = Car.new("red")
+p car_1.num_wheels    # 4
+
+car_2 = Car.new("black")
+p car_2.num_wheels    # 4
+```
+- this is denoted with the @@, **@@num_wheels** above
+- any instance of this class will automatically have this attribute assigned, and does not go into the **initialize** method
+- any changes to class variables will change this attribute for all instances
+
+```ruby
+class Car
+  @@num_wheels = 4
+
+  def self.upgrade_to_flying_cars
+    @@num_wheels = 0
+  end
+
+  def initialize(color)
+    @color = color
+  end
+
+  def num_wheels
+    @@num_wheels
+  end
+end
+
+car_1 = Car.new("red")
+car_2 = Car.new("black")
+
+p car_1.num_wheels    # 4
+p car_2.num_wheels    # 4
+
+Car.upgrade_to_flying_cars
+
+p car_1.num_wheels    # 0
+p car_2.num_wheels    # 0
+
+car_3 = Car.new("silver")
+p car_3.num_wheels    # 0
+```
+
+
+## Class Constants
+- most class variables are things that we don't want changed as it can drastically affect our code and functionality
+- to fix this we create a constant(type of variable that can't be reassigned/changed)
+```ruby
+class Car
+  NUM_WHEELS = 4
+
+  def self.upgrade_to_flying_cars
+    NUM_WHEELS = 0    # SyntaxError: dynamic constant assignment
+  end
+
+  def initialize(color)
+    @color = color
+  end
+
+  def num_wheels
+    NUM_WHEELS
+  end
+end
+
+
+car_1 = Car.new("red")
+car_2 = Car.new("black")
+
+p car_1.num_wheels    # 4
+p car_2.num_wheels    # 4
+
+Car.upgrade_to_flying_cars
+```
+- Class Constant names must be capitalized
+- trying to reassign the constant will give you an eror
+
+## Wrap Up
+- an @instance_variable will be a distinct variable in each instance of a class; changing the variable will only effect that one instance
+- a @@class_variable will be shared among all instances of a class; changing the variable will effect all instances because all instances of the class
+- a CLASS_CONSTANT will be shared among all instances of a class, but cannot be changed

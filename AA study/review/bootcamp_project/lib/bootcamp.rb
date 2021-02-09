@@ -43,7 +43,7 @@ class Bootcamp
 	end
 
 	def enrolled?(student)
-		@students.include?(student) ? true : false
+		@students.include?(student)
 	end
 
 	def student_to_teacher_ratio

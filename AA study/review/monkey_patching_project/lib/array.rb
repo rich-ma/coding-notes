@@ -29,5 +29,36 @@ class Array
 		end
 		count_hash
 	end
+
+	def my_count(val)
+		count = 0
+		self.each {|el| count += 1 if el == val}
+		count
+	end
+
+	def my_index(val)
+		self.each_with_index {|el, i| return i if el == val}
+		nil
+	end
+
+	def my_uniq
+		uniq_arr = []
+		arr_hash = Hash.new(false)
+		self.each do |el|
+			uniq_arr << el unless arr_hash[el]
+			arr_hash[el] = true
+		end
+		uniq_arr
+	end
+
+	def my_transpose
+		new_arr = Array.new(self.length){Array.new(self.length)}
+		self.each_with_index do |arr, i|
+			arr.each_with_index do |el, j|
+				new_arr[j][i] = el
+			end
+		end
+		new_arr
+	end
 	
 end

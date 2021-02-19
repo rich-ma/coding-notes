@@ -7,11 +7,15 @@ class Board
 	end
 
 	def [](pos)
-		@grid[pos[0]][pos[1]]
+		row = pos[0]
+		col = pos[1]
+		@grid[row][col]
 	end
 
 	def []=(pos, val)
-		@grid[pos[0]][pos[1]] = val
+		row = pos[0]
+		col = pos[1]
+		@grid[row][col] = val
 	end
 
 	def num_ships
@@ -23,6 +27,28 @@ class Board
 		count
 	end
 
+	def attack(pos)
+		if self[pos] == :S
+			self[pos] = :H
+			p 'you sunk my battleship!'
+			true
+		else
+			self[pos] = :X
+			false
+		end
+	end
+
+	def place_random_ships
+		values = (0...self.size).to_a.sample(self.size/4)
+		values.each do |i|
+			row = i/@grid.length
+			col = i % @grid.length
+			self[[row, col]] = :S
+		end
+	end
+
+	def hidden_ships_grid
+	end
 	
   
 end

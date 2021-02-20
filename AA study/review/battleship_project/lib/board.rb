@@ -48,7 +48,29 @@ class Board
 	end
 
 	def hidden_ships_grid
+		n = Math.sqrt(@size)
+		hidden_grid = Array.new(n)
+		@grid.each_with_index do |row, i|
+			hidden_grid[i] = row.map do |el|
+				el == :S ? :N : el
+			end
+		end
+
+		hidden_grid
+	end
+
+	def self.print_grid(grid)
+		grid.each do |row|
+			puts row.join(' ')
+		end
+	end
+
+	def cheat
+		Board.print_grid(@grid)
 	end
 	
+	def print
+		Board.print_grid(hidden_ships_grid)
+	end
   
 end

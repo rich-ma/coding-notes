@@ -125,4 +125,56 @@ arr2[2] == 1 # true
 ```
 - here, for every key the hash will set the value of the key to be a new [] value.
 - an issue can be see on line 18 and 19 where checking for the devon key actually adds the key. 
-- 
+
+
+# Scope
+- **Scope**: the context in which a variable name is valid and can be used
+- ruby has a few types of variables: Local, Instance, class
+- **local variables** can be declared anytime you write something like:
+  - some_var = 'some_val'
+- **instance varialbes** begin with @
+- **class variables** begin with @@
+
+
+## Block scoping
+- variables declared within a block are not accessible once we exit the block
+- if a variable is declared outside of a block, we have access within a block, and any changes made to it within the block persist as well.
+- **Local variables declared in an outer scope are available and can be modified by all inner scopes.  Local variables declared in inner scopes are not accessible to outer scopes**
+- if/while statements do not work the same way as blocks.  local variables declared within an if/while statement are accessible, given that the conditions were met
+
+
+## scope gates
+- scope gate is when we lose access to variables defined outside as we enter a new context like a method or class.
+```ruby
+x = 2
+​
+def display_x
+  puts x
+end
+​
+display_x # Error - undefined local variable `x`
+```
+- even though x is defined before the method in an 'outer' scope, the method defintion, **def**, opens a new **scope gate** and we lose access to all previously defined **local** variables.  we only have access to local variables defined within the method, and parameters.
+
+```ruby
+x = 2
+​
+def display_x(x)
+  puts x
+end
+​
+display_x(x) # outputs 2
+```
+
+
+
+```ruby
+
+self # => main
+
+class Hello
+  p self # => Hello
+end
+```
+- here we can see how the self changes as we move into the class
+- the exception to this are **GLOBAL VARIABLES** which are deonted with the $ sign.  These are accessible in every scope, but are dangerous and typically unecesary.

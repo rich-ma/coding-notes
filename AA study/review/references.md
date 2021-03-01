@@ -178,3 +178,126 @@ end
 ```
 - here we can see how the self changes as we move into the class
 - the exception to this are **GLOBAL VARIABLES** which are deonted with the $ sign.  These are accessible in every scope, but are dangerous and typically unecesary.
+
+## HAsh and Equals
+- **==**: fundamental check for equality, checks if two objects have the same value
+- == is inherited from the Object class. it will return true only if the two objects are literally the same object(pointer equality).  
+  - this means that even if two arrays have the same exact values, it will not be equal since they point to different objects in memory.
+
+- **eql?**: assesses general equality. uses an objects **#hash** method to assess equality. that way **a.eql? b** becomes a.hash == b.hash
+  - to create a meaning eql? method for a class, you must overwrite the **#hash** method
+  - one example of meaningful is eql? vs ==, where == will do a type conversion for numericals(int to float/etc) but eql? does not.
+  ```ruby
+	   3.0 == 3 #=> true
+   3.0.eql? 3 #=> false
+	 ```
+	- this is because float#hash, and int#hash are not the same
+```ruby
+	some_hash = { 3 => 'the third' }
+	some_hash[3.0] #=> nil
+	some_hash[3] #=> 'the third'
+```
+
+## #equal? (Identity Equality)
+- **equal?**: does simple pointer comparison, same behavior as default **==** for Object class.
+```ruby
+class Dog
+   # ...
+end
+
+a = Dog.new
+b = Dog.new
+a = c
+
+a.equal? b #=> false
+a.equal? c #=> true
+```
+- should never overwrite **#equal?**
+
+## === (Case equality)
+- **#===**: same behavior as #== for most classes, and by default classes you write, this is the method that **case** uses to determine which block to execute
+```ruby
+case a
+when b
+   # ...
+when c
+   # ...
+else
+   # ...
+end
+```
+is equivalent to 
+```ruby
+if b === a # triple equals!
+   # ...
+elsif c === a
+   # ...
+else
+   # ...
+end
+```
+- #=== should be rewritten in classes if you want to add advanced case/when behavior
+- example: **Integer#===** checks to see if the argument is a type of integer
+```ruby
+case number
+when Integer
+   # ...
+when Float
+   # ...
+end
+```
+- here, we can have different interactions based on numeric type
+- You can use it for pretty crazy situations such as Regexp#=== 
+```ruby
+tracking_service = case number
+   when /^.Z/ then :ups
+   when /^Q/ then :dhl
+   when /^96.{20}$/ then :fedex
+   when /^[HK].{10}$/ then :ups
+end
+```
+- from http://stackoverflow.com/a/1735777
+
+
+## Equality and Hash keys
+- to use instances of a class as Hash keys, you need to know how Hash uses the #eql? method
+- when a hash looks of a key, it first looks for an existing key object whose hash method returns a value equal to that returned by the given key's hash method
+- then it checks if **found_key_object.eql?(given_key_object), verifying that in addition to having the same hash, the found key and given key should be equal
+- if both if these tests pass, then you will get the desired value instead of nil.
+```ruby
+class Cat
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  def hash
+    @name.hash
+  end
+end
+```
+- here is an example, where we have a Cat class with a name and we use the hash of the string name as our cat hash value.
+```ruby
+hash = {}
+cat1 = Cat.new('Fluffy')
+hash[cat1] = 'is the best cat'
+```
+- if we create another Cat with the same name and lookup the value of the first isntance, the hash will not be able to find it.
+- this is a problem as we want 2 cats wiht the same data(name) to be treated as the same key by the hash.
+```ruby
+hash[cat1] #=> 'is the best cat'
+cat2 = Cat.new('Fluffy')
+hash[cat2] #=> nil
+```
+- this happens because the class inherits the default **aql?** method from **Object** which only looks for pointer equality.
+```ruby
+class Cat
+  def eql?(other)
+    self.name == other.name
+  end
+end
+
+hash[cat2] #=> 'is the best cat'
+```
+- takeaway: if you create a class and want to use it as a key in a hash, you need to define **#hash** and **#eql?**

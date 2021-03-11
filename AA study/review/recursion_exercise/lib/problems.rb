@@ -126,3 +126,8 @@ end
 
 # 	flatten(data).concat([el])
 # end
+
+def bsearch(arr, val)
+
+end
+

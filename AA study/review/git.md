@@ -89,4 +89,22 @@ no changes added to commit (use "git add" and/or "git commit -a")
   - everytime you make a major change you shoudl commit
   - **git reset**: use this to reset to a previous commit if you made a mistake
 
+# Additional resources
 
+## Aliases
+- alias is a shell command that enables to replacement of a word with another string
+- not git specific, but for terminal use
+
+
+### Creating an alias
+- open your shell's configuration file
+- .bashrc, or .bash_profile, etc.
+
+```bash
+alias gcm='git commit -m'
+```
+- this will allow us to type gcm, instead of git commit -m/master. 
+- 
+
+# git cheatsheet
+http://www.ndpsoftware.com/git-cheatsheet.html

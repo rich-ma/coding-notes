@@ -6,6 +6,7 @@ class PolyTreeNode
 		@children = []
 	end
 
+	#getters
 	def value
 		@value
 	end
@@ -18,30 +19,33 @@ class PolyTreeNode
 		@children
 	end
 
+	#setters
 	def parent=(node)
-		unless @parent.nil?
-			remove_child(node, self)
+		if @parent
+			remove_child(@parent, self)
 		end
+		
 		@parent = node
 		if node
-			node.add_child(self)
+			node.add_child(self) 
+		end
+	end
+
+	def children=(children)
+		@children = children
+	end
+
+	def add_child(child)
+		unless @children.include?(child)
+			@children << child
 		end
 	end
 
 	def remove_child(node, child)
 		children = node.children
-		i = children.index(child)
-		node.children = children.slice(0,i).concat(children.slice(i+1..-1))
+		index = children.index(child)
+		node.children = children[0...index].concat(children[index+1 .. -1])
 	end
 
-	def children=(node)
-		@children = node
-	end
-
-	def add_child(node)
-		unless @children.include?(node)
-			@children << node
-		end
-	end
 end
 

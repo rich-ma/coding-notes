@@ -22,7 +22,7 @@ class PolyTreeNode
 	#setters
 	def parent=(node)
 		if @parent
-			remove_child(@parent, self)
+			@parent.remove_child(self)
 		end
 		
 		@parent = node
@@ -41,10 +41,9 @@ class PolyTreeNode
 		end
 	end
 
-	def remove_child(node, child)
-		children = node.children
-		index = children.index(child)
-		node.children = children[0...index].concat(children[index+1 .. -1])
+	def remove_child(child)
+		index = @children.index(child)
+		@children = @children[0...index].concat(@children[index+1..-1])
 	end
 
 end
